@@ -12,6 +12,7 @@
          <!-- <a href="report-usulan.php?page=tambah" class="btn btn-primary">Tambah Data</a> -->
          <a href="report-usulan.php?page=export" class="btn btn-primary" target="_blank">Print Data</a>
        </div>
+       
      </div>
    </div>
 

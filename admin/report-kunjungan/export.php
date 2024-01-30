@@ -16,6 +16,27 @@ use Spipu\Html2Pdf\Html2Pdf;
 use Spipu\Html2Pdf\Exception\Html2PdfException;
 use Spipu\Html2Pdf\Exception\ExceptionFormatter;
 
+function tgl_indo($tanggal)
+{
+  $bulan = array(
+    1 =>   'Januari',
+    'Februari',
+    'Maret',
+    'April',
+    'Mei',
+    'Juni',
+    'Juli',
+    'Agustus',
+    'September',
+    'Oktober',
+    'November',
+    'Desember'
+  );
+  $pecahkan = explode('-', $tanggal);
+
+  return $pecahkan[2] . ' ' . $bulan[(int)$pecahkan[1]] . ' ' . $pecahkan[0];
+}
+
 try {
   ob_start();
 ?>
@@ -64,18 +85,18 @@ try {
         <td>
           <img src="../assets/img/banjar.png" height="60" alt="" class="gambar">
         </td>
-        <td style="text-align: center ; padding: 16px 48px;">
-        <span style="font-size: 16px;font-weight: bold; text-align: center ;">PEMERINTAH KABUPATEN BANJAR</span>
+        <td style="text-align: center ; padding: 20px 48px;">
+          <span style="font-size: 20px;font-weight: bold; text-align: center ;">PEMERINTAH KABUPATEN BANJAR</span>
           <br>
-          <span style="font-size: 20px;font-weight: bold; text-align: center ;">DINAS SOSIAL, PEMBERDDAYAAN PEREMPUAN,</span>
+          <span style="font-size: 14px;font-weight: bold; text-align: center ;">DINAS SOSIAL, PEMBERDDAYAAN PEREMPUAN,</span>
           <br>
-          <span style="font-size: 20px;font-weight: bold; text-align: center ;">PERLINDUNGAN ANAK, PENGENDALIAN PENDUDUK</span>
+          <span style="font-size: 14px;font-weight: bold; text-align: center ;">PERLINDUNGAN ANAK, PENGENDALIAN PENDUDUK</span>
           <br>
-          <span style="font-size: 20px;font-weight: bold; text-align: center ;">DAN KELUARGA BERENCANA</span>
+          <span style="font-size: 14px;font-weight: bold; text-align: center ;">DAN KELUARGA BERENCANA</span>
           <br>
           <span style="font-size: 12px;font-weight: lighter ;">Jl. Pendidikan Martapura 70614 Kalimantan Selatan Telp. (0511) 4721221,</span>
           <br>
-          <span style="font-size: 12px;font-weight: lighter;">Website : <u>www.dinsosp3ap2kb.banjarkab.go.id</u> Email : dinsosp3ap2kb@banjarkab.go.id</span>
+          <span style="font-size: 12px;font-weight: lighter;">Website : <u>www.dp2kbp3a.banjarkab.go.id</u> Email : bp3akb@yahoo.com</span>
         </td>
         <td>
         </td>
@@ -86,40 +107,65 @@ try {
 
 
     <br>
-    <h2 style="text-align: center;"><u>Rekap Jenis-Jenis dan Persyratan Usulan</u></h2>
+    <h2 style="text-align: center;">Rekap Data Kunjungan</h2>
     <br>
 
     <table class="table bordered">
       <colgroup>
         <col style="width: 5%" class="angka">
         <col style="width: 20%" class="angka">
-        <col style="width: 25%" class="angka">
-        <col style="width: 25%" class="angka">
-        <col style="width: 25%" class="angka">
+        <col style="width: 20%" class="angka">
+        <col style="width: 15%" class="angka">
+        <col style="width: 15%" class="angka">
+        <col style="width: 15%" class="angka">
+        <col style="width: 10%" class="angka">
       </colgroup>
       <thead>
         <tr>
           <th>No</th>
-          <th>Jenis Usulan</th>
-          <th>Kriteria</th>
-          <th>Persyaratan</th>
+          <th>Nama Masyarakat</th>
+          <th>Keperluan</th>
+          <th>Bertemu dengan</th>
+          <th>Tanggal</th>
           <th>Keterangan</th>
+          <th>Status</th>
         </tr>
       </thead>
       <tbody>
         <?php
         include_once '../config/koneksi.php';
         $no = 1;
-        $query = "SELECT * FROM tb_usulan ORDER BY id_usulan DESC";
+        $query = "SELECT * FROM tb_kunjungan AS k
+        JOIN tb_masyarakat AS m ON k.masyarakat_id = m.id_masyarakat
+        JOIN tb_pegawai AS p ON k.pegawai_id = p.id_pegawai
+        ORDER BY k.id_kunjungan DESC";
         $result = mysqli_query($koneksi, $query);
         while ($row = mysqli_fetch_assoc($result)) {
         ?>
           <tr>
             <td><?= $no++; ?></td>
-            <td><?= $row['jenis_usulan']; ?></td>
-            <td><?= $row['kriteria']; ?></td>
-            <td><?= $row['persyaratan']; ?></td>
+            <td><?= $row['nama']; ?></td>
+            <td><?= $row['keperluan']; ?></td>
+            <td><?= $row['nama_pegawai']; ?></td>
+            <td><?= tgl_indo($row['tanggal']); ?></td>
             <td><?= $row['keterangan']; ?></td>
+            <td>
+              <?php
+              if ($row['status'] == 'Pending') {
+              ?>
+                Menunggu Verifikasi
+              <?php
+              } elseif (($row['status'] == 'Disetujui')) {
+              ?>
+                Disetujui
+              <?php
+              } elseif (($row['status'] == 'Dibatalkan')) {
+              ?>
+                Dibatalkan
+              <?php
+              }
+              ?>
+            </td>
           </tr>
         <?php } ?>
       </tbody>
@@ -155,8 +201,8 @@ try {
 
     <table class="table">
       <colgroup>
-        <col style="width: 70%" class="angka">
-        <col style="width: 30%" class="angka">
+        <col style="width: 60%" class="angka">
+        <col style="width: 40%" class="angka">
       </colgroup>
 
       <tr style="text-align: center;">
@@ -166,7 +212,7 @@ try {
       <tr style="text-align: center;">
         <td></td>
         <td>Kepala Dinas Sosial P3AP2KB <br>
-            Kabupaten Banjar,
+          Kabupaten Banjar,
         </td>
       </tr>
       <tr style="text-align: center;">
@@ -178,10 +224,10 @@ try {
       <tr style="text-align: center;">
         <td></td>
         <td>
-          Dian Marliana, S.STP., M.Si <br>
-          Pembina Tingkat I <br>
-          NIP. 19780312 199612 2 001
-         </td>
+          Dra. Hj. Siti Hamidah, M.Si <br>
+          Pembina Utama Muda <br>
+          NIP. 19631224 198503 2 006
+        </td>
       </tr>
     </table>
 

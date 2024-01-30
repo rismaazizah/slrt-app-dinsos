@@ -19,9 +19,6 @@ switch ($page) {
   case 'tambah':
     include 'kunjungan/tambah.php';
     break;
-  case 'export':
-    include 'kunjungan/export.php';
-    break;
   case 'edit':
     include 'kunjungan/edit.php';
     break;

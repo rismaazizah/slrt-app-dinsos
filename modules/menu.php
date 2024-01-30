@@ -78,28 +78,6 @@
     <hr class="sidebar-divider">
 
     <!-- Heading -->
-    <!-- <div class="sidebar-heading">
-      BUKU SURAT MENYURAT
-    </div> -->
-
-    <!-- <li class="nav-item">
-      <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-        <i class="fa fa-envelope"></i>
-        <span> Surat Menyurat</span>
-      </a>
-      <div id="collapseOne" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
-        <div class="bg-white py-2 collapse-inner rounded">
-          <a class="collapse-item" href="surat-masuk.php">Surat Pernyataan</a>
-          <a class="collapse-item" href="surat-keluar.php">Surat Rekomendasi</a>
-          <a class="collapse-item" href="surat-keluar.php">Surat Berita Acara Verifikasi <br>Data</a>
-        </div>
-      </div>
-    </li> -->
-
-    <!-- Divider -->
-    <!-- <hr class="sidebar-divider"> -->
-
-    <!-- Heading -->
     <div class="sidebar-heading">
       Laporan
     </div>
@@ -128,64 +106,13 @@
         <span>Rekap Data Pengusulan Bantuan</span></a>
     </li>
 
-  <?php } elseif ($_SESSION['role'] == 'masyarakat') {
-  ?>
-    <!-- Heading -->
-    <div class="sidebar-heading">
-      Master Data
-    </div>
-
     <li class="nav-item">
-      <a class="nav-link" href="tamu.php">
-        <i class="fas fa-duotone fa-users"></i>
-        <span>Biodata</span></a>
+      <a class="nav-link" href="report-kunjungan.php">
+        <i class="fa fa-archive"></i>
+        <span>Rekap Data Kunjungan</span></a>
     </li>
 
-    <li class="nav-item">
-      <a class="nav-link" href="tamu.php">
-        <i class="fas fa-duotone fa-users"></i>
-        <span>Data Keluarga</span></a>
-    </li>
 
-    <!-- Divider -->
-    <hr class="sidebar-divider d-none d-md-block">
-
-    <!-- Heading -->
-    <div class="sidebar-heading">
-      Pengaduan
-    </div>
-
-    <li class="nav-item">
-      <a class="nav-link" href="tamu.php">
-        <i class="fas fa-duotone fa-users"></i>
-        <span>Buku Pengaduan</span></a>
-    </li>
-
-    <!-- Divider -->
-    <hr class="sidebar-divider d-none d-md-block">
-
-    <!-- Heading -->
-    <div class="sidebar-heading">
-      Usulan
-    </div>
-
-    <li class="nav-item">
-      <a class="nav-link" href="tamu.php">
-        <i class="fas fa-duotone fa-users"></i>
-        <span>Permohonan BAGAMIS</span></a>
-    </li>
-
-    <li class="nav-item">
-      <a class="nav-link" href="tamu.php">
-        <i class="fas fa-duotone fa-users"></i>
-        <span>Permohonan KIS</span></a>
-    </li>
-
-    <li class="nav-item">
-      <a class="nav-link" href="tamu.php">
-        <i class="fas fa-duotone fa-users"></i>
-        <span>Permohonan Bantuan Berobat Sambang Lihum</span></a>
-    </li>
 
     <!-- Heading -->
   <?php

@@ -3,7 +3,7 @@ include '../modules/header.php';
 include '../config/is_admin.php';
 ?>
 
-<title>Pengaduan</title>
+<title>Kunjungan</title>
 
 <?php
 // check page from url
@@ -14,25 +14,25 @@ if (isset($_GET['page'])) {
 }
 switch ($page) {
   case 'tampil':
-    include 'pengaduan/tampil.php';
+    include 'report-kunjungan/tampil.php';
     break;
   case 'tambah':
-    include 'pengaduan/tambah.php';
+    include 'report-kunjungan/tambah.php';
     break;
   case 'export':
-    include 'pengaduan/export.php';
+    include 'report-kunjungan/export.php';
     break;
   case 'edit':
-    include 'pengaduan/edit.php';
+    include 'report-kunjungan/edit.php';
+    break;
+  case 'detail':
+    include 'report-kunjungan/detail.php';
     break;
   case 'proses':
-    include 'pengaduan/proses.php';
-    break;
-  case 'import':
-    include 'pengaduan/import.php';
+    include 'report-kunjungan/proses.php';
     break;
   case 'hapus':
-    include 'pengaduan/hapus.php';
+    include 'report-kunjungan/hapus.php';
     break;
 
   default:
@@ -41,6 +41,6 @@ switch ($page) {
 }
 ?>
 
-  <?php
-  include '../modules/footer.php';
-  ?>
+<?php
+include '../modules/footer.php';
+?>

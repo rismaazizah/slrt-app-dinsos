@@ -10,7 +10,6 @@
      <div class="row">
        <div class="col-12 d-flex justify-content-between">
          <a href="usulan.php?page=tambah" class="btn btn-primary">Tambah Data</a>
-         <a href="usulan.php?page=export" class="btn btn-primary" target="_blank">Print Data</a>
        </div>
      </div>
    </div>

@@ -2,7 +2,7 @@
 <div class="container-fluid">
 
   <!-- Page Heading -->
-  <h1 class="h3 mb-4 text-gray-800">Tambah Surat Keluar</h1>
+  <h1 class="h3 mb-4 text-gray-800">Kunjungan </h1>
 
   <div class="card card-body">
     <div class="row">
@@ -39,35 +39,44 @@
 
       </div>
       <div class="col-12">
-        <form action="surat-keluar.php?page=proses" method="post">
+        <form action="kunjungan.php?page=proses" method="post">
 
           <div class="row">
             <div class="col-6">
               <div class="form-group">
-                <label>Nomor Surat</label>
-                <input type="text" class="form-control" name="no_surat" required placeholder="Masukkan Nomor Surat ...">
+                <label>Nama</label>
+                <input type="text" class="form-control" name="nama" required placeholder="Nama">
               </div>
             </div>
+          </div>
+          <div class="row">
+            <div class="col-6">
+              <div class="form-group">
+                <label>Keperluan</label>
+                <input type="text" class="form-control" name="keperluan" required placeholder="Keperluan">
+              </div>
+            </div>
+          </div>
+          <div class="row">
             <div class="col-6">
               <div class="form-group">
                 <label>Tanggal</label>
                 <input type="date" class="form-control" name="tanggal" required placeholder="Tanggal">
               </div>
             </div>
+          </div>
+          <div class="row">
             <div class="col-6">
               <div class="form-group">
-                <label>Perihal</label>
-                <input type="text" class="form-control" name="perihal" required placeholder="Masukkan Perihal ...">
+                <label>Status</label>
+                <select name="status" class="form-control" required>
+                  <option>Pilih ...</option>
+                  <option value="Pending">Pending</option>
+                  <option value="Dibatalkan">Dibatalkan</option>
+                  <option value="Selesai">Selesai</option>
+                </select>
               </div>
             </div>
-
-            <div class="col-6">
-              <div class="form-group">
-                <label>Tujuan</label>
-                <input type="text" class="form-control" name="tujuan" required placeholder="Masukkan Tujuan ...">
-              </div>
-            </div>
-
           </div>
 
           <button name="tambah" value="tambah" class="btn btn-primary">Simpan</button>
