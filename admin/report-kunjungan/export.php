@@ -224,9 +224,9 @@ try {
       <tr style="text-align: center;">
         <td></td>
         <td>
-          Dra. Hj. Siti Hamidah, M.Si <br>
-          Pembina Utama Muda <br>
-          NIP. 19631224 198503 2 006
+          Dian Marliana, S.STP., M.Si <br>
+          Pembina Tingkat I <br>
+          NIP. 19780312 199612 2 001
         </td>
       </tr>
     </table>

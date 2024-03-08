@@ -54,7 +54,6 @@
             <li><a class="nav-link scrollto " href="index.php">Home</a></li>
             <li><a class="nav-link scrollto" href="usulan.php">Usulan</a></li>
             <li><a class="nav-link scrollto" href="monitoring.php">Monitoring</a></li>
-            <li><a class="nav-link scrollto" href="krisar.php">Kritk & Saran</a></li>
             <li><a class="nav-link scrollto" href="konsultasi.php">Konsultasi</a></li>
             <li><a class="nav-link scrollto active" href="kunjungan.php">Kunjungan</a></li>
             <li class="getstarted scrollto dropdown"><a href="#"><span><?= ucfirst($_SESSION['username']) ?></span> <i class="bi bi-chevron-down"></i></a>
@@ -71,7 +70,6 @@
       ?>
         <li><a class="nav-link scrollto active" href="index.php">Home</a></li>
         <li><a class="nav-link scrollto" href="usulan.php">Usulan</a></li>
-        <li><a class="nav-link scrollto" href="krisar.php">Kritk & Saran</a></li>
         <li><a class="getstarted scrollto" href="login.php">Login</a></li>
       <?php
           }

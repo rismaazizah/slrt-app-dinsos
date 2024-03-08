@@ -54,7 +54,7 @@ try {
 
   <body>
 
-  <table class="table ">
+    <table class="table ">
       <colgroup>
         <col style="width: 10%">
         <col style="width: 80%">
@@ -64,18 +64,19 @@ try {
         <td>
           <img src="../assets/img/banjar.png" height="60" alt="" class="gambar">
         </td>
-        <td style="text-align: center ; padding: 20px 48px;">
-        <span style="font-size: 20px;font-weight: bold; text-align: center ;">PEMERINTAH KABUPATEN BANJAR</span>
+        <td style="text-align: center ; padding: 16px 48px;">
+        <span style="font-size: 16px;font-weight: bold; text-align: center ;">PEMERINTAH KABUPATEN BANJAR</span>
           <br>
-          <span style="font-size: 14px;font-weight: bold; text-align: center ;">DINAS SOSIAL, PEMBERDDAYAAN PEREMPUAN,</span>
+          <span style="font-size: 20px;font-weight: bold; text-align: center ;">DINAS SOSIAL, PEMBERDDAYAAN PEREMPUAN,</span>
           <br>
-          <span style="font-size: 14px;font-weight: bold; text-align: center ;">PERLINDUNGAN ANAK, PENGENDALIAN PENDUDUK</span>
+          <span style="font-size: 20px;font-weight: bold; text-align: center ;">PERLINDUNGAN ANAK, PENGENDALIAN PENDUDUK</span>
           <br>
-          <span style="font-size: 14px;font-weight: bold; text-align: center ;">DAN KELUARGA BERENCANA</span>
+          <span style="font-size: 20px;font-weight: bold; text-align: center ;">DAN KELUARGA BERENCANA</span>
           <br>
           <span style="font-size: 12px;font-weight: lighter ;">Jl. Pendidikan Martapura 70614 Kalimantan Selatan Telp. (0511) 4721221,</span>
           <br>
-          <span style="font-size: 12px;font-weight: lighter;">Website : <u>Website : <u>www.dinsosp3ap2kb.banjarkab.go.id</u> Email : dinsosp3ap2kb@banjarkab.go.id</span>
+          <span style="font-size: 12px;font-weight: lighter;">Website : <u>www.dinsosp3ap2kb.banjarkab.go.id</u> Email : dinsosp3ap2kb@banjarkab.go.id</span>
+        </td>
         <td>
         </td>
       </tr>
@@ -85,7 +86,7 @@ try {
 
 
     <br>
-    <h2 style="text-align: center;">Rekap Data Pegawai</h2>
+    <h2 style="text-align: center;"><u>Rekap Data Pegawai</u></h2>
     <br>
 
     <table class="table bordered">
@@ -125,7 +126,6 @@ try {
             <td><?= $row['alamat']; ?></td>
             <td><?= $row['jabatan']; ?></td>
             <td><?= $row['tempat_tugas']; ?></td>
-
           </tr>
         <?php } ?>
       </tbody>
@@ -159,10 +159,10 @@ try {
     // make year to indonesian
     ?>
 
-<table class="table">
+    <table class="table">
       <colgroup>
-        <col style="width: 60%" class="angka">
-        <col style="width: 40%" class="angka">
+        <col style="width: 70%" class="angka">
+        <col style="width: 30%" class="angka">
       </colgroup>
 
       <tr style="text-align: center;">
@@ -187,7 +187,7 @@ try {
           Dian Marliana, S.STP., M.Si <br>
           Pembina Tingkat I <br>
           NIP. 19780312 199612 2 001
-        </td>
+         </td>
       </tr>
     </table>
 
