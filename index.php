@@ -140,7 +140,7 @@
       <div class="row">
         <div class="col-lg-6 d-flex flex-column justify-content-center pt-4 pt-lg-0 order-2 order-lg-1" data-aos="fade-up" data-aos-delay="200">
           <h2>Selamat Datang di</h2>
-          <h1>Sistem Layanan dan Rujukan Terpadu "BAROKAH"</h1>
+          <h1>Sistem Layanan dan Rujukan Terpadu</h1>
           <div class="d-flex justify-content-center justify-content-lg-start">
             <a href="login.php" class="btn-get-started scrollto">Login</a>
             <a href="https://www.youtube.com/watch?v=vE4ouOgrj3A" class="glightbox btn-watch-video"><i class="bi bi-play-circle"></i><span>Watch Video</span></a>
@@ -312,7 +312,7 @@
     <!-- End Lokasi Kantor -->
 
 
-    <!-- ======= Lokasi Pelayanan ======= -->
+    <!-- ======= Lokasi Pelayanan Martapura ======= -->
     <section id="services" class="services section-bg">
       <div class="container" data-aos="fade-up">
 
@@ -323,10 +323,24 @@
         <div class="row content">
           <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2816.202271808434!2d114.84707632511012!3d-3.4203050315655172!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2de681b99086b82f%3A0x52c339079ad7ff23!2sMal%20Pelayanan%20Publik%20%22Barokah%22%20Kabupaten%20Banjar!5e0!3m2!1sid!2sid!4v1690615822636!5m2!1sid!2sid" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
         </div>
-
+        
       </div>
     </section>
     
+     <!-- ======= Lokasi Pelayanan Gambut ======= -->
+    <section id="about" class="about">
+      <div class="container" data-aos="fade-up">
+
+        <div class="section-title">
+          <h2>Lokasi Plaza Pelayanan Publik Gambut</h2>
+        </div>
+
+        <div class="row content">
+          <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d989.5055241812337!2d114.6681802!3d-3.4072085!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2de69dcc715a750b%3A0x4ec5bc4f153cf7e7!2sPlaza%20Pelayanan%20Publik%20Gambut!5e0!3m2!1sid!2sid!4v1690615822636!5m2!1sid!2sid" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+        </div>
+        
+      </div>
+    </section>
 
   </main><!-- End #main -->
 

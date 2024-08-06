@@ -1,4 +1,4 @@
-<ul class="navbar-nav bg-gradient-info sidebar sidebar-dark accordion" id="accordionSidebar">
+<ul class="navbar-nav bg-gradient-success sidebar sidebar-dark accordion" id="accordionSidebar">
 
   <!-- Sidebar - Brand -->
   <a class="sidebar-brand d-flex flex-column align-items-center justify-content-center" href="../config/cek_login.php" style="height: 120px;">
@@ -111,7 +111,6 @@
         <i class="fa fa-archive"></i>
         <span>Rekap Data Kunjungan</span></a>
     </li>
-
 
 
     <!-- Heading -->
