@@ -12115,3 +12115,62 @@ section {
     width: 100%;
   }
 }
+
+.kritik-saran {
+  padding: 60px 0;
+}
+
+.kritik-saran .php-email-form {
+  background: #fff;
+  padding: 30px;
+  border-radius: 5px;
+  box-shadow: 0 0 30px rgba(214, 215, 216, 0.6);
+}
+
+.kritik-saran .php-email-form .form-group {
+  margin-bottom: 20px;
+}
+
+.kritik-saran .php-email-form input,
+.kritik-saran .php-email-form textarea {
+  border-radius: 0;
+  box-shadow: none;
+  font-size: 14px;
+}
+
+.kritik-saran .php-email-form input:focus,
+.kritik-saran .php-email-form textarea:focus {
+  border-color: #47b2e4;
+}
+
+.kritik-saran .php-email-form button[type="submit"] {
+  background: #47b2e4;
+  border: 0;
+  padding: 12px 34px;
+  color: #fff;
+  transition: 0.4s;
+  border-radius: 50px;
+}
+
+.kritik-saran .php-email-form button[type="submit"]:hover {
+  background: #209dd8;
+}
+
+.alert {
+  padding: 15px;
+  margin-bottom: 20px;
+  border: 1px solid transparent;
+  border-radius: 4px;
+}
+
+.alert-success {
+  color: #3c763d;
+  background-color: #dff0d8;
+  border-color: #d6e9c6;
+}
+
+.alert-danger {
+  color: #a94442;
+  background-color: #f2dede;
+  border-color: #ebccd1;
+}

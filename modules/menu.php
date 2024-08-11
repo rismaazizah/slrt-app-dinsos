@@ -112,6 +112,12 @@
         <span>Rekap Data Kunjungan</span></a>
     </li>
 
+    <li class="nav-item">
+      <a class="nav-link" href="admin_krisar.php">
+        <i class="fa fa-comments"></i>
+        <span>Kritik dan Saran</span></a>
+    </li>
+
 
     <!-- Heading -->
   <?php
