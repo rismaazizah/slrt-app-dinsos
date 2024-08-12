@@ -74,6 +74,12 @@
         <span>Pengguna</span></a>
     </li>
 
+    <li class="nav-item">
+      <a class="nav-link" href="admin_usulan_list.php">
+        <i class="fas fa-user"></i>
+        <span>Daftar Usulan</span></a>
+    </li>
+
     <!-- Divider -->
     <hr class="sidebar-divider">
 
