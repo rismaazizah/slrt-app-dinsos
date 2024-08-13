@@ -9,7 +9,7 @@ if (!isset($_SESSION['login']) || $_SESSION['role'] !== 'admin') {
 }
 
 // Fetch usulan data from the database
-$query = "SELECT u.id_usulan, u.jenis_usulan, pu.tgl_pengajuan, m.nama AS nama_pengusul
+$query = "SELECT u.id_usulan, u.jenis_usulan, pu.id_pengusulan_bantuan, pu.tgl_pengajuan, pu.status, m.nama AS nama_pengusul, m.id_masyarakat
           FROM tb_usulan u 
           JOIN tb_pengusulan_bantuan pu ON u.id_usulan = pu.usulan_id
           JOIN tb_masyarakat m ON pu.masyarakat_id = m.id_masyarakat 
@@ -21,37 +21,89 @@ if (!$result) {
     die("Query failed: " . mysqli_error($koneksi));
 }
 
+// Function to get usulan details
+function getUsulanDetails($koneksi, $id_pengusulan_bantuan) {
+    $query = "SELECT u.*, pu.*, m.*
+              FROM tb_usulan u 
+              JOIN tb_pengusulan_bantuan pu ON u.id_usulan = pu.usulan_id
+              JOIN tb_masyarakat m ON pu.masyarakat_id = m.id_masyarakat 
+              WHERE pu.id_pengusulan_bantuan = ?";
+    $stmt = $koneksi->prepare($query);
+    $stmt->bind_param("i", $id_pengusulan_bantuan);
+    $stmt->execute();
+    $result = $stmt->get_result();
+    return $result->fetch_assoc();
+}
+
 ?>
 
 <div class="container-fluid">
-    <h1 class="h3 mb-2 text-gray-800">Daftar Usulan</h1><br>
+    <h1 class="h3 mb-2 text-gray-800">Daftar Usulan</h1>
     <div class="card shadow mb-4">
         <div class="card-body">
             <div class="table-responsive">
-                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-                    <thead>
+                <table class="table table-bordered table-striped" id="dataTable" width="100%" cellspacing="0">
+                    <thead class="bg-primary text-white">
                         <tr>
-                            <th>ID Usulan</th>
+                            <th>No.</th>
+                            <th>Nama Pengusul</th>
                             <th>Jenis Usulan</th>
                             <th>Tanggal Pengajuan</th>
-                            <th>Nama Pengusul</th>
+                            <th>Status</th>
                             <th>Aksi</th>
                         </tr>
                     </thead>
                     <tbody>
-                        <?php while ($row = mysqli_fetch_assoc($result)) : ?>
+                        <?php 
+                        $no = 1;
+                        while ($row = mysqli_fetch_assoc($result)) : 
+                        ?>
                             <tr>
-                                <td><?php echo $row['id_usulan']; ?></td>
-                                <td><?php echo $row['jenis_usulan']; ?></td>
+                                <td><?php echo $no++; ?></td>
+                                <td><?php echo htmlspecialchars($row['nama_pengusul']); ?></td>
+                                <td><?php echo htmlspecialchars($row['jenis_usulan']); ?></td>
                                 <td><?php echo date('d-m-Y', strtotime($row['tgl_pengajuan'])); ?></td>
-                                <td><?php echo $row['nama_pengusul']; ?></td>
+                                <td><?php echo htmlspecialchars($row['status']); ?></td>
                                 <td>
-                                    <a href="view_berkas.php?usulan_id=<?php echo $row['id_usulan']; ?>" 
+                                    <a href="../view_berkas.php?id=<?php echo $row['id_masyarakat']; ?>" 
                                        class="btn btn-primary btn-sm" target="_blank">
-                                        Lihat Berkas
+                                        <i class="fas fa-file-pdf"></i> Lihat Berkas
                                     </a>
+                                    <button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#detailModal<?php echo $row['id_pengusulan_bantuan']; ?>">
+                                        <i class="fas fa-info-circle"></i> Detail
+                                    </button>
                                 </td>
                             </tr>
+                            <!-- Detail Modal -->
+                            <div class="modal fade" id="detailModal<?php echo $row['id_pengusulan_bantuan']; ?>" tabindex="-1" role="dialog" aria-labelledby="detailModalLabel<?php echo $row['id_pengusulan_bantuan']; ?>" aria-hidden="true">
+                                <div class="modal-dialog" role="document">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" id="detailModalLabel<?php echo $row['id_pengusulan_bantuan']; ?>">Detail Usulan</h5>
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                <span aria-hidden="true">&times;</span>
+                                            </button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <?php
+                                            $details = getUsulanDetails($koneksi, $row['id_pengusulan_bantuan']);
+                                            if ($details) :
+                                            ?>
+                                                <p><strong>Nama Pengusul:</strong> <?php echo htmlspecialchars($details['nama']); ?></p>
+                                                <p><strong>Jenis Usulan:</strong> <?php echo htmlspecialchars($details['jenis_usulan']); ?></p>
+                                                <p><strong>Tanggal Pengajuan:</strong> <?php echo date('d-m-Y', strtotime($details['tgl_pengajuan'])); ?></p>
+                                                <p><strong>Status:</strong> <?php echo htmlspecialchars($details['status']); ?></p>
+                                                <!-- Add more details as needed -->
+                                            <?php else : ?>
+                                                <p>Detail tidak ditemukan.</p>
+                                            <?php endif; ?>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Tutup</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         <?php endwhile; ?>
                     </tbody>
                 </table>
