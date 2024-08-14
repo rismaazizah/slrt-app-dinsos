@@ -14,56 +14,36 @@ try {
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <style>
-            body {
-                width: 100%;
-                margin: 0;
-                padding: 0;
-            }
             .table {
                 border-collapse: collapse;
                 width: 100%;
-                margin: 0 auto;
             }
-            td{
-                padding: 18px;
-            }
-            th {
-                padding: 67px;
-            }
-            table.bordered {
-                width: 90%;
-                margin: 0 auto;
-                border-collapse: collapse;
+            th, td {
+                padding: 8px;
             }
             table.bordered th, table.bordered td {
                 border: 1px solid black;
-                padding: 10px;
             }
             table.bordered th {
                 text-align: center;
-                font-weight: bold;
-            }
-            .center-content {
-                text-align: center;
-                width: 100%;
             }
         </style>
     </head>
     <body>
         <table class="table">
             <colgroup>
-                <col style="width: 10%">
-                <col style="width: 80%">
-                <col style="width: 10%">
+                <col style="width: 20%">
+                <col style="width: 65%">
+                <col style="width: 15%">
             </colgroup>
             <tr>
-                <td>
-                    <img src="../assets/img/banjar.png" height="60" alt="" class="gambar">
+                <td style="text-align: right; padding-right: 20px;">
+                    <img src="../assets/img/banjar.png" height="110" alt="" class="gambar">
                 </td>
-                <td style="text-align: center ; padding: 16px 48px;">
+                <td style="text-align: center; padding: 16px 48px;">
                     <span style="font-size: 16px;font-weight: bold; text-align: center ;">PEMERINTAH KABUPATEN BANJAR</span>
                     <br>
-                    <span style="font-size: 20px;font-weight: bold; text-align: center ;">DINAS SOSIAL, PEMBERDDAYAAN PEREMPUAN,</span>
+                    <span style="font-size: 20px;font-weight: bold; text-align: center ;">DINAS SOSIAL, PEMBERDAYAAN PEREMPUAN,</span>
                     <br>
                     <span style="font-size: 20px;font-weight: bold; text-align: center ;">PERLINDUNGAN ANAK, PENGENDALIAN PENDUDUK</span>
                     <br>
@@ -79,39 +59,40 @@ try {
 
         <hr>
 
-        <h2 style="text-align: center; margin-top: 20px; margin-bottom: 20px;"><u>Laporan Nomor Pengusulan</u></h2>
+        <br>
+        <h2 style="text-align: center;"><u>Laporan Nomor Pengusulan</u></h2>
+        <br>
 
-        <div class="center-content">
-            <table class="bordered">
-                <thead>
+        <table class="table bordered" style="width: 100%;">
+            <thead>
+                <tr>
+                    <th style="width: 5%;">No</th>
+                    <th style="width: 25%;">Nomor Pengusulan</th>
+                    <th style="width: 25%;">Nama Pengusul</th>
+                    <th style="width: 25%;">Tanggal Pengajuan</th>
+                    <th style="width: 20%;">Status</th>
+                </tr>
+            </thead>
+            <tbody>
+                <?php
+                include_once '../config/koneksi.php';
+                $no = 1;
+                $query = "SELECT nomor_pengusulan, nama_pengusul, tgl_pengajuan, status FROM tb_pengusulan_bantuan ORDER BY tgl_pengajuan DESC";
+                $result = mysqli_query($koneksi, $query);
+                while ($row = mysqli_fetch_assoc($result)) {
+                ?>
                     <tr>
-                        <th style="width: 5%;">No</th>
-                        <th style="width: 30%;">Nomor Pengusulan</th>
-                        <th style="width: 30%;">Nama Pengusul</th>
-                        <th style="width: 20%;">Tanggal Pengajuan</th>
-                        <th style="width: 20%;">Status</th>
+                        <td><?= $no++; ?></td>
+                        <td><?= htmlspecialchars($row['nomor_pengusulan']); ?></td>
+                        <td><?= htmlspecialchars($row['nama_pengusul']); ?></td>
+                        <td><?= date('d F Y', strtotime($row['tgl_pengajuan'])); ?></td>
+                        <td><?= htmlspecialchars($row['status']); ?></td>
                     </tr>
-                </thead>
-                <tbody>
-                    <?php
-                    include_once '../config/koneksi.php';
-                    $no = 1;
-                    $query = "SELECT nomor_pengusulan, nama_pengusul, tgl_pengajuan, status FROM tb_pengusulan_bantuan ORDER BY tgl_pengajuan DESC";
-                    $result = mysqli_query($koneksi, $query);
-                    while ($row = mysqli_fetch_assoc($result)) {
-                    ?>
-                        <tr>
-                            <td style="text-align: center;"><?= $no++; ?></td>
-                            <td><?= htmlspecialchars($row['nomor_pengusulan']); ?></td>
-                            <td><?= htmlspecialchars($row['nama_pengusul']); ?></td>
-                            <td style="text-align: center;"><?= date('d F Y', strtotime($row['tgl_pengajuan'])); ?></td>
-                            <td style="text-align: center;"><?= htmlspecialchars($row['status']); ?></td>
-                        </tr>
-                    <?php } ?>
-                </tbody>
-            </table>
-        </div>
+                <?php } ?>
+            </tbody>
+        </table>
 
+        <br>
         <br>
         <br>
 

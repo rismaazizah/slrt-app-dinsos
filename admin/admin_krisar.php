@@ -13,12 +13,23 @@ $records_per_page = 10;
 $page = isset($_GET['page']) ? (int)$_GET['page'] : 1;
 $offset = ($page - 1) * $records_per_page;
 
-// Fetch kritik dan saran data with pagination
-$sql = "SELECT * FROM kritik_saran ORDER BY tanggal DESC LIMIT $offset, $records_per_page";
+// Initialize the WHERE clause
+$where_clause = "WHERE 1=1";
+
+// Check for filter parameters
+if (isset($_GET['start_date']) && $_GET['start_date'] != '') {
+    $where_clause .= " AND tanggal >= '" . $_GET['start_date'] . "'";
+}
+if (isset($_GET['end_date']) && $_GET['end_date'] != '') {
+    $where_clause .= " AND tanggal <= '" . $_GET['end_date'] . "'";
+}
+
+// Fetch kritik dan saran data with pagination and filters
+$sql = "SELECT * FROM kritik_saran $where_clause ORDER BY tanggal DESC LIMIT $offset, $records_per_page";
 $result = $koneksi->query($sql);
 
 // Get total number of records
-$total_records_sql = "SELECT COUNT(*) FROM kritik_saran";
+$total_records_sql = "SELECT COUNT(*) FROM kritik_saran $where_clause";
 $total_records_result = $koneksi->query($total_records_sql);
 $total_records = $total_records_result->fetch_row()[0];
 $total_pages = ceil($total_records / $records_per_page);
@@ -30,11 +41,32 @@ $total_pages = ceil($total_records / $records_per_page);
     <div class="card card-body">
      <div class="row">
        <div class="col-12 d-flex justify-content-between">
-         <!-- <a href="report-konsultasi.php?page=tambah" class="btn btn-primary">Tambah Data</a> -->
          <a href="export_krisar.php" class="btn btn-info" target="_blank">Print Data</a>
        </div>
      </div>
-   </div>
+    </div>
+    <div class="card card-body mt-2">
+        <div class="row">
+            <div class="col-12">
+                <form action="" method="GET">
+                    <div class="form-row">
+                        <div class="form-group col-md-4">
+                            <label for="start_date">Tanggal Awal</label>
+                            <input type="date" class="form-control" id="start_date" name="start_date" value="<?= isset($_GET['start_date']) ? $_GET['start_date'] : '' ?>">
+                        </div>
+                        <div class="form-group col-md-4">
+                            <label for="end_date">Tanggal Akhir</label>
+                            <input type="date" class="form-control" id="end_date" name="end_date" value="<?= isset($_GET['end_date']) ? $_GET['end_date'] : '' ?>">
+                        </div>
+                        <div class="form-group col-md-4">
+                            <label>&nbsp;</label>
+                            <button type="submit" class="btn btn-primary btn-block">Filter</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
     <div class="card shadow mb-4">
         <div class="card-body">
             <div class="table-responsive">
@@ -72,7 +104,7 @@ $total_pages = ceil($total_records / $records_per_page);
                     <ul class="pagination">
                         <?php if ($page > 1): ?>
                             <li class="page-item">
-                                <a class="page-link" href="?page=<?php echo $page - 1; ?>" aria-label="Previous">
+                                <a class="page-link" href="?page=<?php echo $page - 1; ?><?php echo isset($_GET['start_date']) ? '&start_date='.$_GET['start_date'] : ''; ?><?php echo isset($_GET['end_date']) ? '&end_date='.$_GET['end_date'] : ''; ?>" aria-label="Previous">
                                     <span aria-hidden="true">&laquo; Previous</span>
                                 </a>
                             </li>
@@ -83,12 +115,12 @@ $total_pages = ceil($total_records / $records_per_page);
                         for ($i = $start_page; $i <= $end_page; $i++):
                         ?>
                             <li class="page-item <?php echo ($i == $page) ? 'active' : ''; ?>">
-                                <a class="page-link" href="?page=<?php echo $i; ?>"><?php echo $i; ?></a>
+                                <a class="page-link" href="?page=<?php echo $i; ?><?php echo isset($_GET['start_date']) ? '&start_date='.$_GET['start_date'] : ''; ?><?php echo isset($_GET['end_date']) ? '&end_date='.$_GET['end_date'] : ''; ?>"><?php echo $i; ?></a>
                             </li>
                         <?php endfor; ?>
                         <?php if ($page < $total_pages): ?>
                             <li class="page-item">
-                                <a class="page-link" href="?page=<?php echo $page + 1; ?>" aria-label="Next">
+                                <a class="page-link" href="?page=<?php echo $page + 1; ?><?php echo isset($_GET['start_date']) ? '&start_date='.$_GET['start_date'] : ''; ?><?php echo isset($_GET['end_date']) ? '&end_date='.$_GET['end_date'] : ''; ?>" aria-label="Next">
                                     <span aria-hidden="true">Next &raquo;</span>
                                 </a>
                             </li>

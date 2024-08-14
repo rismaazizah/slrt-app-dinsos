@@ -38,6 +38,34 @@ function tgl_indo($tanggal)
   <div class="card card-body mt-2">
     <div class="row">
       <div class="col-12">
+        <form action="" method="GET">
+          <input type="hidden" name="page" value="tampil">
+          <div class="form-row">
+            <div class="form-group col-md-3">
+              <label for="start_date">Tanggal Awal</label>
+              <input type="date" class="form-control" id="start_date" name="start_date" value="<?= isset($_GET['start_date']) ? $_GET['start_date'] : '' ?>">
+            </div>
+            <div class="form-group col-md-3">
+              <label for="end_date">Tanggal Akhir</label>
+              <input type="date" class="form-control" id="end_date" name="end_date" value="<?= isset($_GET['end_date']) ? $_GET['end_date'] : '' ?>">
+            </div>
+            <div class="form-group col-md-3">
+              <label for="status">Status</label>
+              <select class="form-control" id="status" name="status">
+                <option value="">Semua</option>
+                <option value="Pending" <?= (isset($_GET['status']) && $_GET['status'] == 'Pending') ? 'selected' : '' ?>>Menunggu Verifikasi</option>
+                <option value="Disetujui" <?= (isset($_GET['status']) && $_GET['status'] == 'Disetujui') ? 'selected' : '' ?>>Disetujui</option>
+                <option value="Dibatalkan" <?= (isset($_GET['status']) && $_GET['status'] == 'Dibatalkan') ? 'selected' : '' ?>>Dibatalkan</option>
+              </select>
+            </div>
+            <div class="form-group col-md-3">
+              <label>&nbsp;</label>
+              <button type="submit" class="btn btn-primary btn-block">Filter</button>
+            </div>
+          </div>
+        </form>
+      </div>
+      <div class="col-12">
         <?php
         if (isset($_SESSION['result'])) {
           if ($_SESSION['result'] == 'success') {
@@ -70,6 +98,9 @@ function tgl_indo($tanggal)
 
       </div>
       <div class="col-12">
+        <?php if (isset($_GET['start_date']) || isset($_GET['end_date']) || isset($_GET['status'])): ?>
+          <a href="?page=tampil" class="btn btn-secondary mb-3">Reset</a>
+        <?php endif; ?>
         <table class="table table-bordered" id="mytable" style="width: 100%;">
           <thead>
             <tr>
@@ -90,7 +121,19 @@ function tgl_indo($tanggal)
             $query = "SELECT * FROM tb_kunjungan AS k
             JOIN tb_masyarakat AS m ON k.masyarakat_id = m.id_masyarakat
             JOIN tb_pegawai AS p ON k.pegawai_id = p.id_pegawai
-            ORDER BY k.id_kunjungan DESC";
+            WHERE 1=1";
+
+            if (isset($_GET['start_date']) && $_GET['start_date'] != '') {
+              $query .= " AND k.tanggal >= '" . $_GET['start_date'] . "'";
+            }
+            if (isset($_GET['end_date']) && $_GET['end_date'] != '') {
+              $query .= " AND k.tanggal <= '" . $_GET['end_date'] . "'";
+            }
+            if (isset($_GET['status']) && $_GET['status'] != '') {
+              $query .= " AND k.status = '" . $_GET['status'] . "'";
+            }
+
+            $query .= " ORDER BY k.id_kunjungan DESC";
             $result = mysqli_query($koneksi, $query);
             while ($row = mysqli_fetch_assoc($result)) {
             ?>

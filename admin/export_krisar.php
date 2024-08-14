@@ -16,7 +16,7 @@ try {
         <style>
             .table {
                 border-collapse: collapse;
-                width: 100vw;
+                width: 100%;
             }
             th, td {
                 padding: 8px;
@@ -32,18 +32,18 @@ try {
     <body>
         <table class="table">
             <colgroup>
-                <col style="width: 10%">
-                <col style="width: 80%">
-                <col style="width: 10%">
+                <col style="width: 20%">
+                <col style="width: 65%">
+                <col style="width: 15%">
             </colgroup>
             <tr>
-                <td>
-                    <img src="../assets/img/banjar.png" height="60" alt="" class="gambar">
+                <td style="text-align: right; padding-right: 20px;">
+                    <img src="../assets/img/banjar.png" height="110" alt="" class="gambar">
                 </td>
-                <td style="text-align: center ; padding: 16px 48px;">
+                <td style="text-align: center; padding: 16px 48px;">
                     <span style="font-size: 16px;font-weight: bold; text-align: center ;">PEMERINTAH KABUPATEN BANJAR</span>
                     <br>
-                    <span style="font-size: 20px;font-weight: bold; text-align: center ;">DINAS SOSIAL, PEMBERDDAYAAN PEREMPUAN,</span>
+                    <span style="font-size: 20px;font-weight: bold; text-align: center ;">DINAS SOSIAL, PEMBERDAYAAN PEREMPUAN,</span>
                     <br>
                     <span style="font-size: 20px;font-weight: bold; text-align: center ;">PERLINDUNGAN ANAK, PENGENDALIAN PENDUDUK</span>
                     <br>
@@ -63,14 +63,14 @@ try {
         <h2 style="text-align: center;"><u>Rekap Data Kritik dan Saran</u></h2>
         <br>
 
-        <table class="table bordered">
+        <table class="table bordered" style="width: 100%;">
             <thead>
                 <tr>
-                    <th>No</th>
-                    <th>Nama</th>
-                    <th>Email</th>
-                    <th>Pesan</th>
-                    <th>Tanggal</th>
+                    <th style="width: 5%;">No</th>
+                    <th style="width: 20%;">Nama</th>
+                    <th style="width: 20%;">Email</th>
+                    <th style="width: 40%;">Pesan</th>
+                    <th style="width: 15%;">Tanggal</th>
                 </tr>
             </thead>
             <tbody>

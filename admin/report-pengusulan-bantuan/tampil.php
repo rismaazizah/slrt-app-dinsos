@@ -71,6 +71,32 @@ function tgl_indo($tanggal)
         ?>
 
       </div>
+      <div class="col-12 mb-3">
+        <form id="filterForm" method="GET">
+          <div class="form-row">
+            <div class="col-md-3 mb-3">
+              <label for="filterType">Filter By:</label>
+              <select class="form-control" id="filterType" name="filterType">
+                <option value="day">Hari</option>
+                <option value="month">Bulan</option>
+                <option value="year">Tahun</option>
+              </select>
+            </div>
+            <div class="col-md-3 mb-3">
+              <label for="filterValue">Value:</label>
+              <input type="date" class="form-control" id="filterValue" name="filterValue">
+            </div>
+            <div class="col-md-2 mb-3">
+              <label>&nbsp;</label>
+              <button type="submit" class="btn btn-primary form-control">Filter</button>
+            </div>
+            <div class="col-md-2 mb-3">
+              <label>&nbsp;</label>
+              <a href="?page=tampil" class="btn btn-secondary form-control">Reset</a>
+            </div>
+          </div>
+        </form>
+      </div>
       <div class="col-12">
         <table class="table table-bordered" id="mytable" style="width: 100%;">
           <thead>
@@ -93,8 +119,29 @@ function tgl_indo($tanggal)
             $no = 1;
             $query = "SELECT * FROM tb_pengusulan_bantuan 
               JOIN tb_masyarakat ON tb_pengusulan_bantuan.masyarakat_id = tb_masyarakat.id_masyarakat
-              JOIN tb_usulan ON tb_pengusulan_bantuan.usulan_id = tb_usulan.id_usulan
-              ORDER BY tb_pengusulan_bantuan.id_pengusulan_bantuan DESC";
+              JOIN tb_usulan ON tb_pengusulan_bantuan.usulan_id = tb_usulan.id_usulan";
+
+            // Apply filter if set
+            if (isset($_GET['filterType']) && isset($_GET['filterValue']) && !empty($_GET['filterValue'])) {
+              $filterType = $_GET['filterType'];
+              $filterValue = $_GET['filterValue'];
+              
+              switch ($filterType) {
+                case 'day':
+                  $query .= " WHERE DATE(tb_pengusulan_bantuan.tgl_pengajuan) = '$filterValue'";
+                  break;
+                case 'month':
+                  $month = date('m', strtotime($filterValue));
+                  $year = date('Y', strtotime($filterValue));
+                  $query .= " WHERE MONTH(tb_pengusulan_bantuan.tgl_pengajuan) = '$month' AND YEAR(tb_pengusulan_bantuan.tgl_pengajuan) = '$year'";
+                  break;
+                case 'year':
+                  $query .= " WHERE YEAR(tb_pengusulan_bantuan.tgl_pengajuan) = '$filterValue'";
+                  break;
+              }
+            }
+
+            $query .= " ORDER BY tb_pengusulan_bantuan.id_pengusulan_bantuan DESC";
             $result = mysqli_query($koneksi, $query);
             while ($row = mysqli_fetch_assoc($result)) {
               $q = "SELECT * FROM tb_pegawai WHERE id_pegawai = '{$row['pegawai_id']}'";
@@ -255,3 +302,26 @@ function tgl_indo($tanggal)
     </div>
   </div>
 </div>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    var filterType = document.getElementById('filterType');
+    var filterValue = document.getElementById('filterValue');
+
+    filterType.addEventListener('change', function() {
+        switch(this.value) {
+            case 'day':
+                filterValue.type = 'date';
+                break;
+            case 'month':
+                filterValue.type = 'month';
+                break;
+            case 'year':
+                filterValue.type = 'number';
+                filterValue.min = '1900';
+                filterValue.max = new Date().getFullYear().toString();
+                break;
+        }
+    });
+});
+</script>
