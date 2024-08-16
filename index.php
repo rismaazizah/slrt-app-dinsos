@@ -108,19 +108,19 @@
           ?>
           <!-- Success -->
           <div class="alert alert-success alert-dismissible fade show" role="alert">
-            <strong><?= $_SESSION['message'] ?></strong>
+            <strong>Berhasil!</strong> <?= $_SESSION['message'] ?>
             <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
           </div>
           <!-- Success -->
           <?php
         } else {
           ?>
-          <!-- danger -->
+          <!-- Error -->
           <div class="alert alert-danger alert-dismissible fade show" role="alert">
-            <strong><?= $_SESSION['message'] ?></strong>
+            <strong>Gagal!</strong> <?= $_SESSION['message'] ?>
             <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
           </div>
-          <!-- danger -->
+          <!-- Error -->
           <?php
         }
         unset($_SESSION['result']);
@@ -228,7 +228,7 @@
         <div class="col-lg-7 d-flex flex-column justify-content-center align-items-stretch  order-2 order-lg-1">
 
           <div class="content">
-            <h3>Persyaratan-persyaratan untuk <strong>Pengusulan Bantuan</strong></h3>
+            <h3>Persyaratan-persyratan untuk <strong>Pengusulan Bantuan</strong></h3>
             <p>
               Jenis-jenis <b>Bantuan :</b>
             </p>
@@ -237,70 +237,48 @@
           <div class="accordion-list">
             <ul>
               <li>
-                <a data-bs-toggle="collapse" class="collapse" data-bs-target="#accordion-list-1"><span>01</span> Layanan Keterangan Terdaftar Data Terpadu Kesejahteraan Sosial Kementerian Sosial R.I (DTKS)<i class="bx bx-chevron-down icon-show"></i><i class="bx bx-chevron-up icon-close"></i></a>
+                <a data-bs-toggle="collapse" class="collapse" data-bs-target="#accordion-list-1"><span>01</span> Bantuan Gasan Masyarakat Miskin <b>(BAGAMIS)</b> <i class="bx bx-chevron-down icon-show"></i><i class="bx bx-chevron-up icon-close"></i></a>
                 <div id="accordion-list-1" class="collapse show" data-bs-parent=".accordion-list">
                   <p>
                     <ul>
-                      <li><i class="ri-check-line"></i> Terdata dalam Data Terpadu Kesejahteraan Sosial (DTKS)</li>
-                      <li><i class="ri-check-line"></i> Fotokopi Kartu Tanda Penduduk (KTP) Kepala Keluarga</li>
-                      <li><i class="ri-check-line"></i> Fotokopi Kartu Keluarga</li>
-                      <li><i class="ri-check-line"></i>  Surat Keterangan Tidak Mampu yang ditanda tangani oleh Pambakal/Lurah dan diketahui Camat</li>
+                      <li><i class="ri-check-line"></i> Fotokopi Kartu Keluarga Kabupaten Banjar (Terbaru)</li>
+                      <li><i class="ri-check-line"></i> Fotokopi Kartu Tanda Penduduk (KTP) Kabupaten Banjar</li>
+                      <li><i class="ri-check-line"></i> Surat Keterangan Tidak Mampu (SKTM) dari Pembakal yang diketahui Camat, Puskesos dan Supervisor/Fasilitator Kecamatan</li>
+                      <li><i class="ri-check-line"></i> Surat Rujukan dari Puskesmas</li>
+                      <li><i class="ri-check-line"></i> Surat Rawat Inap dari Rumah Sakit</li>
                       <li><i class="ri-check-line"></i> Foto Rumah (Depan, Samping dan Belakang)</li>
+                      <li><i class="ri-check-line"></i> Materai 10.000</li>
                     </ul>
                   </p>
                 </div>
               </li>
 
               <li>
-                <a data-bs-toggle="collapse" data-bs-target="#accordion-list-2" class="collapsed"><span>02</span> Layanan Rekomendasi Permohonan Bantuan Biaya Pendampingan<i class="bx bx-chevron-down icon-show"></i><i class="bx bx-chevron-up icon-close"></i></a>
+                <a data-bs-toggle="collapse" data-bs-target="#accordion-list-2" class="collapsed"><span>02</span> Bantuan Iuran Jaminan Kesehatan Nasional <b>(PBI-JKN)</b> <i class="bx bx-chevron-down icon-show"></i><i class="bx bx-chevron-up icon-close"></i></a>
                 <div id="accordion-list-2" class="collapse" data-bs-parent=".accordion-list">
                   <p>
                     <ul>
-                      <li><i class="ri-check-line"></i> Fotokopi Kartu Tanda Penduduk (KTP) Pasien</li>
-                      <li><i class="ri-check-line"></i> Fotokopi Kartu Tanda Penduduk (KTP) Kepala Keluarga</li>
-                      <li><i class="ri-check-line"></i> Fotokopi Kartu Tanda Penduduk (KTP) Penanggung Jawab</li>
-                      <li><i class="ri-check-line"></i> Fotokopi Kartu Keluarga</li>
-                      <li><i class="ri-check-line"></i> Surat Rujukan atau Surat Kontrol Dari Puskesmas</li>
-                      <li><i class="ri-check-line"></i> Surat Rawat Inap Dari Rumah Sakit</li>
-                      <li><i class="ri-check-line"></i> Surat Keterangan Tidak Mampu yang ditanda tangani oleh Pambakal/Lurah dan diketahui Camat</li>
+                      <li><i class="ri-check-line"></i> Fotokopi Kartu Keluarga Kabupaten Banjar (Terbaru)</li>
+                      <li><i class="ri-check-line"></i> Fotokopi Kartu Tanda Penduduk (KTP) Kabupaten Banjar</li>
+                      <li><i class="ri-check-line"></i> Surat Keterangan Tidak Mampu (SKTM) dari Pembakal yang diketahui Camat, Puskesos dan Supervisor/Fasilitator Kecamatan</li>
                       <li><i class="ri-check-line"></i> Foto Rumah (Depan, Samping dan Belakang)</li>
-                      <li><i class="ri-check-line"></i> Materai 10.000 bagi Pasien yang tidak masuk dalam Data Terpadu Kesejahteraan Sosial (DTKS)</li>
-                      <li><i class="ri-check-line"></i> Rincian Biaya</li>
                     </ul>
                   </p>
                 </div>
               </li>
 
               <li>
-                <a data-bs-toggle="collapse" data-bs-target="#accordion-list-3" class="collapsed"><span>03</span> Layanan Rekomendasi Permohonan Bantuan Sosial dan Ekonomi <i class="bx bx-chevron-down icon-show"></i><i class="bx bx-chevron-up icon-close"></i></a>
+                <a data-bs-toggle="collapse" data-bs-target="#accordion-list-3" class="collapsed"><span>03</span> Bantuan Biaya Berobat ke RSJ Sambang Lihum <i class="bx bx-chevron-down icon-show"></i><i class="bx bx-chevron-up icon-close"></i></a>
                 <div id="accordion-list-3" class="collapse" data-bs-parent=".accordion-list">
                   <p>
                     <ul>
-                      <li><i class="ri-check-line"></i> Rencana Anggaran Belanja</li>
-                      <li><i class="ri-check-line"></i> Fotokopi Kartu Tanda Penduduk (KTP) Kepala Keluarga</li>
-                      <li><i class="ri-check-line"></i> Fotokopi Kartu Keluarga</li>
-                      <li><i class="ri-check-line"></i> Surat Keterangan Kepemilikan Tanah</li>
-                      <li><i class="ri-check-line"></i> Surat Keterangan Tidak Mampu yang ditanda tangani oleh Pambakal/Lurah dan diketahui Camat</li>
+                      <li><i class="ri-check-line"></i> Fotokopi Kartu Keluarga Kabub paten Banjar (Terbaru)</li>
+                      <li><i class="ri-check-line"></i> Fotokopi Kartu Tanda Penduduk (KTP) Kabupaten Banjar</li>
+                      <li><i class="ri-check-line"></i> Surat Keterangan Tidak Mampu (SKTM) dari Pembakal yang diketahui Camat, Puskesos dan Supervisor/Fasilitator Kecamatan</li>
+                      <li><i class="ri-check-line"></i> Surat Rujukan dari Puskesmas</li>
+                      <li><i class="ri-check-line"></i> Surat Rawat Inap dari Rumah Sakit</li>
                       <li><i class="ri-check-line"></i> Foto Rumah (Depan, Samping dan Belakang)</li>
-                    </ul>
-                  </p>
-                </div>
-              </li>
-
-              <li>
-                <a data-bs-toggle="collapse" data-bs-target="#accordion-list-4" class="collapsed"><span>04</span> Layanan Rekomendasi Permohonan Bantuan Biaya/Berobat Aktivasi Jaminan Kesehatan APBD<i class="bx bx-chevron-down icon-show"></i><i class="bx bx-chevron-up icon-close"></i></a>
-                <div id="accordion-list-4" class="collapse" data-bs-parent=".accordion-list">
-                  <p>
-                    <ul>
-                      <li><i class="ri-check-line"></i> Fotokopi Kartu Tanda Penduduk (KTP) Pasien</li>
-                      <li><i class="ri-check-line"></i> Fotokopi Kartu Tanda Penduduk (KTP) Kepala Keluarga</li>
-                      <li><i class="ri-check-line"></i> Fotokopi Kartu Tanda Penduduk (KTP) Penanggung Jawab</li>
-                      <li><i class="ri-check-line"></i> Fotokopi Kartu Keluarga</li>
-                      <li><i class="ri-check-line"></i> Surat Rujukan atau Surat Kontrol Dari Puskesmas</li>
-                      <li><i class="ri-check-line"></i> Surat Rawat Inap Dari Rumah Sakit</li>
-                      <li><i class="ri-check-line"></i> Surat Keterangan Tidak Mampu yang ditanda tangani oleh Pambakal/Lurah dan diketahui Camat</li>
-                      <li><i class="ri-check-line"></i> Foto Rumah (Depan, Samping dan Belakang)</li>
-                      <li><i class="ri-check-line"></i> Materai 10.000 bagi Pasien yang tidak masuk dalam Data Terpadu Kesejahteraan Sosial (DTKS)</li>
+                      <li><i class="ri-check-line"></i> Materai 10.000</li>
                     </ul>
                   </p>
                 </div>
@@ -369,30 +347,24 @@
         <h2>Kritik dan Saran</h2>
         <p>Sampaikan kritik dan saran Anda untuk membantu kami meningkatkan layanan</p>
       </div>
-
       <div class="row">
         <div class="col-lg-12 mt-5 mt-lg-0 d-flex align-items-stretch">
-          <form action="process_krisar.php" method="post" role="form" class="php-email-form">
+          <form method="post" action="process_krisar.php" style="width: 100%; padding: 30px; background: #fff; box-shadow: 0 0 24px 0 rgba(0, 0, 0, 0.12); border-radius: 4px;">
             <div class="row">
               <div class="form-group col-md-6">
-                <label for="name">Nama</label>
-                <input type="text" name="name" class="form-control" id="name" required>
+                <label for="name" style="font-weight: 600; color: #37517e; margin-bottom: 10px;">Nama</label>
+                <input type="text" name="name" class="form-control" id="name" required style="height: 44px; border-radius: 4px; box-shadow: none; font-size: 14px;">
               </div>
               <div class="form-group col-md-6">
-                <label for="email">Email</label>
-                <input type="email" class="form-control" name="email" id="email" required>
+                <label for="email" style="font-weight: 600; color: #37517e; margin-bottom: 10px;">Email</label>
+                <input type="email" class="form-control" name="email" id="email" required style="height: 44px; border-radius: 4px; box-shadow: none; font-size: 14px;">
               </div>
             </div>
             <div class="form-group">
-              <label for="message">Pesan</label>
-              <textarea class="form-control" name="message" rows="10" required></textarea>
+              <label for="message" style="font-weight: 600; color: #37517e; margin-bottom: 10px;">Pesan</label>
+              <textarea class="form-control" name="message" rows="10" required style="padding: 12px 15px; border-radius: 4px; box-shadow: none; font-size: 14px;"></textarea>
             </div>
-            <div class="my-3">
-              <div class="loading">Loading</div>
-              <div class="error-message"></div>
-              <div class="sent-message">Pesan Anda telah terkirim. Terima kasih!</div>
-            </div>
-            <div class="text-center"><button type="submit">Kirim Pesan</button></div>
+            <div class="text-center"><button type="submit" style="background: #47b2e4; border: 0; padding: 12px 34px; color: #fff; transition: 0.4s; border-radius: 50px; margin-top: 15px;">Kirim Pesan</button></div>
           </form>
         </div>
       </div>

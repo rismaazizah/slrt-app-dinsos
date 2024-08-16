@@ -57,6 +57,7 @@
                   <option value="admin">Admin</option>
                   <option value="pegawai">Pegawai</option>
                   <option value="masyarakat">Masyarakat</option>
+                  <option value="kadis">Kepala Dinas</option>
                 </select>
               </div>
             </div>

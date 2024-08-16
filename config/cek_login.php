@@ -5,6 +5,9 @@ if ($_SESSION['login']) {
   if ($_SESSION['role'] == 'admin') {
     header("Location: ../admin/dashboard.php");
     exit();
+  } elseif ($_SESSION['role'] == 'kadis') {
+    header("Location: ../kadis/dashboard.php");
+    exit();
   } elseif ($_SESSION['role'] == 'pegawai') {
     include 'koneksi.php';
     $user_id = $_SESSION['id_user'];

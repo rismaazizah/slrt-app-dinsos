@@ -82,6 +82,7 @@ function tgl_indo($tanggal)
               <th>Status</th>
               <th>Tanggal Pengajuan</th>
               <th>Kelengkapan Berkas</th>
+              <th>Jenis Rujukan</th>
               <th>Surat Rekomendasi</th>
               <th>Petugas Verifikasi</th>
               <th style="width: 150px;" class="not-export-col">Aksi</th>
@@ -141,7 +142,27 @@ function tgl_indo($tanggal)
                 </td>
                 <td>
                   <?php
-                  if ($row['status'] == 'Diterima' && $row['kelengkapan_berkas'] == 1) {
+                  if ($row['jenis_rujukan'] == '0' || $row['jenis_rujukan'] == '') {
+                    echo '<div class="badge badge-warning py-2 px-3">Belum Ada Rujukan</div>';
+                  } elseif ($row['jenis_rujukan'] == '1') {
+                    echo '<div class="badge badge-success py-2 px-3">Rumah Sakit</div>';
+                  } elseif ($row['jenis_rujukan'] == '2') {
+                    echo '<div class="badge badge-success py-2 px-3">Sekolah</div>';
+                  } elseif ($row['jenis_rujukan'] == '3') {
+                    echo '<div class="badge badge-success py-2 px-3">Kampus</div>';
+                  } elseif ($row['jenis_rujukan'] == '4') {
+                    echo '<div class="badge badge-success py-2 px-3">Badan Amil Zakat Nasional (BAZNAS)</div>';
+                  } elseif ($row['jenis_rujukan'] == '5') {
+                    echo '<div class="badge badge-success py-2 px-3">Badan Pengelolaan Keuangan dan Aset Daerah (BPKAD)</div>';
+                  } else {
+                    echo '<div class="badge badge-success py-2 px-3">' . $row['jenis_rujukan'] . '</div>';
+                  }
+                  ?>
+                </td>
+                <td>
+                  
+                  <?php
+                  if ($row['status'] == 'Diterima' && $row['kelengkapan_berkas'] == 1 && $row['jenis_rujukan'] != '0') {
                   ?>
                     <a href="pengusulan-bantuan.php?page=exportSuren&id_pengusulan_bantuan=<?= $row['id_pengusulan_bantuan']; ?>" class="btn btn-info" target="_blank">Print</a>
                   <?php
@@ -154,7 +175,7 @@ function tgl_indo($tanggal)
                 </td>
                 <td class="not-export-col">
                   <?php
-                  if ($row['status'] == 'Diterima' && $row['kelengkapan_berkas'] == 1) {
+                  if ($row['status'] == 'Diterima' && $row['kelengkapan_berkas'] == 1 && $row['jenis_rujukan'] != '0') {
                   ?>
                     <a href="pengusulan-bantuan.php?page=detail&id_pengusulan_bantuan=<?= $row['id_pengusulan_bantuan']; ?>" class="btn btn-success">Detail</a>
                   <?php
@@ -170,7 +191,7 @@ function tgl_indo($tanggal)
                   ?>
                     <a href="pengusulan-bantuan.php?page=hapus&id_pengusulan_bantuan=<?= $row['id_pengusulan_bantuan']; ?>" class="btn btn-danger" onclick="return confirm('Apakah anda yakin ingin menghapus data')">Hapus</a>
                   <?php
-                  } elseif ($row['status'] == 'Diterima' && $row['kelengkapan_berkas'] == 1) {
+                  } elseif ($row['status'] == 'Diterima' && $row['kelengkapan_berkas'] == 1 && $row['jenis_rujukan'] != '0') {
                   ?>
                     <a href="pengusulan-bantuan.php?page=exportSingle&id_pengusulan_bantuan=<?= $row['id_pengusulan_bantuan']; ?>" class="btn btn-info" target="_blank">Print</a>
                   <?php
@@ -255,3 +276,14 @@ function tgl_indo($tanggal)
     </div>
   </div>
 </div>
+
+<?php
+// Tambahkan kode ini di bagian bawah file untuk memastikan data ter-refresh setelah edit
+if(isset($_GET['edited']) && $_GET['edited'] == 'true') {
+    echo "<script>
+        $(document).ready(function() {
+            location.reload(true);
+        });
+    </script>";
+}
+?>

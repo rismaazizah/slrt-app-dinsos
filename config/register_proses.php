@@ -25,13 +25,25 @@ $password = md5($_POST['password']);
 $queryUser = "INSERT INTO `tb_user` (`id_user`, `username`, `password`, `role`) VALUES (NULL, '$username', '$password', 'masyarakat');";
 
 $resultUser = mysqli_query($koneksi, $queryUser);
+	include '../modules/mail/head.php';
+  $mail->addAddress($email, "Admin Kantor Kelurahan Rangda Malingkung"); //email penerima
+	$mail->isHTML(true);
+	$mail->Subject = "Berhasil Mendaftar"; //subject
+    $mail->Body    = "
+    <p>Yth ".$nama.", Permintaan Surat dengan keterangan :</p>
+    <p>NIK                : ".$nik."</p>
+    <p>Nama Lengkap       : ".$nama."</p>
+    <p>Tanggal Registrasi : ".date('d-m-Y')."</p>
+    Selamat, Anda Berhasil Mendaftar di Sistem Informasi Pendaftaran Pengajuan Surat Keluar Kelurahan Rangda Malingkung.
+    <p>TERIMAKASIH TELAH MENGGUNAKAN LAYANAN KANTOR KELURAHAN RANGDA MALINGKUNG</p>"; //isi email
+	include '../modules/mail/foot.php';
 
 if (!$resultUser) {
   // make a success message with session
   $_SESSION['result'] = 'error';
   $_SESSION['message'] = mysqli_error($koneksi);
   //refresh page
-  header("Location: ../register.php");
+    echo '<script>window.location.href = "../register.php";</script>';
   die;
 }
 
@@ -43,16 +55,14 @@ $result = mysqli_query($koneksi, $query);
 
 if ($result) {
   // make a success message with session
-  session_start();
   $_SESSION['result'] = 'success';
   $_SESSION['message'] = 'Berhasil Mendaftar! Silahkan Login';
 
-  header("Location: ../login.php");
+  echo '<script>window.location.href = "../login.php";</script>';
 } else {
   // make a success message with session
-  session_start();
   $_SESSION['result'] = 'error';
   $_SESSION['message'] = mysqli_error($koneksi);
   //refresh page
-  header("Location: ../register.php");
+ echo '<script>window.location.href = "../register.php";</script>';
 }

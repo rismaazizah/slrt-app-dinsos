@@ -5,34 +5,12 @@ $status = $_POST['status'];
 $kelengkapan_berkas = $_POST['kelengkapan_berkas'];
 $keterangan_verifikasi = $_POST['keterangan_verifikasi'];
 $pegawai_id = $_POST['pegawai_id'];
+$jenis_rujukan = $_POST['jenis_rujukan'];
 
-
-// if (isset($_POST['tambah'])) {
-
-//   $query = "INSERT INTO `tb_pengusulan_bantuan` (`id_pengusulan_bantuan`, `nama_pengusulan_bantuan`, `bidang`, `persyaratan`, `keterangan`) VALUES (NULL, '$nama_pengusulan_bantuan', '$bidang', '$persyaratan', '$keterangan' );";
-
-//   $result = mysqli_query($koneksi, $query);
-
-//   if ($result) {
-//     // make a success message with session
-//     $_SESSION['result'] = 'success';
-//     $_SESSION['message'] = 'Data berhasil ditambahkan';
-
-//     header("Location: pengusulan-bantuan.php");
-//   } else {
-//     // make a success message with session
-//     $_SESSION['result'] = 'error';
-//     $_SESSION['message'] = mysqli_error($koneksi);
-//     //refresh page
-//     header("Location: pengusulan-bantuan.php?page=tambah");
-//   }
-// }
-
-// make if block for update
 if (isset($_POST['update'])) {
   $id_pengusulan_bantuan = $_POST['id_pengusulan_bantuan'];
 
-  $query = "UPDATE tb_pengusulan_bantuan SET keterangan_verifikasi = '$keterangan_verifikasi', status = '$status', kelengkapan_berkas = '$kelengkapan_berkas', pegawai_id = '$pegawai_id' WHERE id_pengusulan_bantuan = '$id_pengusulan_bantuan'";
+  $query = "UPDATE tb_pengusulan_bantuan SET keterangan_verifikasi = '$keterangan_verifikasi', status = '$status', kelengkapan_berkas = '$kelengkapan_berkas', pegawai_id = '$pegawai_id', jenis_rujukan = '$jenis_rujukan' WHERE id_pengusulan_bantuan = '$id_pengusulan_bantuan'";
 
   $result = mysqli_query($koneksi, $query);
 
@@ -56,6 +34,30 @@ if (isset($_POST['update'])) {
     $text .= ' Dengan kelengkapan berkas tidak valid.';
   }
 
+  // Menambahkan informasi jenis rujukan ke teks
+  switch ($jenis_rujukan) {
+    case '1':
+      $text .= ' Jenis rujukan: Rumah Sakit';
+      break;
+    case '2':
+      $text .= ' Jenis rujukan: Sekolah';
+      break;
+    case '3':
+      $text .= ' Jenis rujukan: Kampus';
+      break;
+    case '4':
+      $text .= ' Jenis rujukan: Badan Amil Zakat Nasional (BAZNAS)';
+      break;
+    case '5':
+      $text .= ' Jenis rujukan: Badan Pengelolaan Keuangan dan Aset Daerah (BPKAD)';
+      break;
+    case '6':
+      $text .= ' Jenis rujukan: Tidak Ada Rujukan';
+      break;
+    default:
+      $text .= ' Jenis rujukan tidak valid';
+  }
+
   $text = ucwords($text);
 
   $queryX = "INSERT INTO `tb_histori_pengusulan_bantuan` (`pengusulan_bantuan_id`,`text`) VALUES ('$id_pengusulan_bantuan', '$text');";
@@ -73,6 +75,6 @@ if (isset($_POST['update'])) {
     $_SESSION['result'] = 'error';
     $_SESSION['message'] = mysqli_error($koneksi);
     //refresh page
-    header("Location: pengusulan-bantuan.php?page=edit");
+    header("Location: pengusulan-bantuan.php?page=edit&id_pengusulan_bantuan=" . $id_pengusulan_bantuan);
   }
 }
