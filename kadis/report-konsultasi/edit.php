@@ -162,7 +162,7 @@
                      <span class="timestamp"><?= date("j-m-Y - g:i A", strtotime($chat['timestamp'])) ?></span>
                    </div>
                  <?php
-                  } elseif ($chat['role'] == 'admin') {
+                  } elseif ($chat['role'] == 'kadis') {
                   ?>
                    <div class="chat-from chat-message">
                      <p>
@@ -184,7 +184,7 @@
            <div class="col-6">
              <form action="konsultasi.php?page=proses" method="post" style="margin-top: 20px;">
                <input type="hidden" name="id_konsultasi" value="<?= $id_konsultasi ?>">
-               <input type="hidden" name="role" value="admin">
+               <input type="hidden" name="role" value="kadis">
 
                <div class="form-group">
                  <label class="form-label">Pesan</label>

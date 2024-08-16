@@ -2,6 +2,14 @@
 session_start();
 include 'config/koneksi.php';
 
+if (!isset($_SESSION['role']) || ($_SESSION['role'] != 'masyarakat' && $_SESSION['role'] != 'pegawai')) {
+    echo '<script>
+        alert("Anda harus login sebagai masyarakat atau pegawai untuk mengirim pesan.");
+        window.location.href = "index.php";
+    </script>';
+    exit();
+}
+
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $nama = $_POST['name'];
     $email = $_POST['email'];
@@ -19,11 +27,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $_SESSION['result'] = 'error';
         $_SESSION['message'] = 'Terjadi kesalahan. Silakan coba lagi.';
     }
-    echo '<script>window.location.href = "index.php";</script>';
 
     $stmt->close();
     $koneksi->close();
 
-    // Redirect kembali ke halaman utama
+    echo '<script>
+        alert("' . $_SESSION['message'] . '");
+        window.location.href = "index.php";
+    </script>';
     exit();
 }

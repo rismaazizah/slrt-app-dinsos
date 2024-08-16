@@ -26,7 +26,7 @@ $queryUser = "INSERT INTO `tb_user` (`id_user`, `username`, `password`, `role`) 
 
 $resultUser = mysqli_query($koneksi, $queryUser);
 	include '../modules/mail/head.php';
-  $mail->addAddress($email, "Admin Kantor Kelurahan Rangda Malingkung"); //email penerima
+  $mail->addAddress($email, "Admin SLRT Dinas Sosial P3AP2KB Kabupaten Banjar"); //email penerima
 	$mail->isHTML(true);
 	$mail->Subject = "Berhasil Mendaftar"; //subject
     $mail->Body    = "
@@ -34,8 +34,8 @@ $resultUser = mysqli_query($koneksi, $queryUser);
     <p>NIK                : ".$nik."</p>
     <p>Nama Lengkap       : ".$nama."</p>
     <p>Tanggal Registrasi : ".date('d-m-Y')."</p>
-    Selamat, Anda Berhasil Mendaftar di Sistem Informasi Pendaftaran Pengajuan Surat Keluar Kelurahan Rangda Malingkung.
-    <p>TERIMAKASIH TELAH MENGGUNAKAN LAYANAN KANTOR KELURAHAN RANGDA MALINGKUNG</p>"; //isi email
+    Selamat, Anda Berhasil Mendaftar di Sistem Layanan dan Rujukan Terpadu Dinas Sosial P3AP2KB Kabupaten Banjar.
+    <p>TERIMAKASIH TELAH MENGGUNAKAN SLRT DINAS SOSIAL P3AP2KB KABUPATEN BANJAR</p>"; //isi email
 	include '../modules/mail/foot.php';
 
 if (!$resultUser) {

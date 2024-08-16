@@ -27,6 +27,6 @@ require_once "../modules/mail/library/SMTP.php";
 	//Set TCP port to connect to 
 	$mail->Port = 465;                    
 	$mail->From = $ggmail; //email pengirim
-	$mail->FromName = "ADMIN MALL PELAYANAN PUBLIK"; //nama pengirim
+	$mail->FromName = "ADMIN SLRT DINAS SOSIAL P3AP2KB KABUPATEN BANJAR"; //nama pengirim
 
  ?>

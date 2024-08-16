@@ -10,7 +10,7 @@ include_once '../config/koneksi.php';
 <div class="container-fluid">
 
   <!-- Page Heading -->
-  <h1 class="h3 mb-4 text-gray-800">Dashboard Kepala Dinas</h1> 
+  <h1 class="h3 mb-4 text-gray-800">Dashboard Kepala Dinas</h1>
 
   <!-- Divider -->
   <hr class="sidebar-divider">

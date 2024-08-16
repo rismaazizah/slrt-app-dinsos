@@ -120,7 +120,7 @@ try {
             <td>
               <?php
               $query2 = "SELECT * FROM tb_histori_konsultasi 
-                    WHERE konsultasi_id = '{$row['id_konsultasi']}' AND role = 'admin' ";
+                    WHERE konsultasi_id = '{$row['id_konsultasi']}' AND role = 'kadis' ";
               $result2 = mysqli_query($koneksi, $query2);
               $row2 = mysqli_fetch_assoc($result2);
 

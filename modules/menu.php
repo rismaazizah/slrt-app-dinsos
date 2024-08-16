@@ -170,7 +170,52 @@
         <span>Kunjungan</span></a>
     </li>
   <?php
+  } elseif ($_SESSION['role'] == 'kadis') {
+  ?>
+    <!-- Heading -->
+    <div class="sidebar-heading">
+      Laporan
+    </div>
+
+    <li class="nav-item">
+      <a class="nav-link" href="report-pegawai.php">
+        <i class="fa fa-archive"></i>
+        <span>Rekap Data Pegawai</span></a>
+    </li>
+
+    <li class="nav-item">
+      <a class="nav-link" href="report-masyarakat.php">
+        <i class="fa fa-archive"></i>
+        <span>Rekap Data Masyarakat</span></a>
+    </li>
+
+    <li class="nav-item">
+      <a class="nav-link" href="report-usulan.php">
+        <i class="fa fa-archive"></i>
+        <span>Rekap Data Usulan</span></a>
+    </li>
+
+    <li class="nav-item">
+      <a class="nav-link" href="report-pengusulan-bantuan.php">
+        <i class="fa fa-archive"></i>
+        <span>Rekap Data Pengusulan Bantuan</span></a>
+    </li>
+
+    <li class="nav-item">
+      <a class="nav-link" href="report-kunjungan.php">
+        <i class="fa fa-archive"></i>
+        <span>Rekap Data Kunjungan</span></a>
+    </li>
+
+    <li class="nav-item">
+      <a class="nav-link" href="laporan_nomor_pengusulan.php">
+        <i class="fa fa-archive"></i>
+        <span>Rekap Data Laporan Antrian</span></a>
+    </li>
+  <?php
   } ?>
+
+  
 
 
 

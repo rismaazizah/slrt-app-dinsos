@@ -75,6 +75,7 @@
                    <option value="admin" <?= $row['role'] == 'admin' ? 'selected' : '' ?>>Admin</option>
                    <option value="pegawai" <?= $row['role'] == 'pegawai' ? 'selected' : '' ?>>Pegawai</option>
                    <option value="masyarakat" <?= $row['role'] == 'masyarakat' ? 'selected' : '' ?>>Masyarakat</option>
+                   <option value="kadis" <?= $row['role'] == 'kadis' ? 'selected' : '' ?>>Kepala Dinas</option>
                  </select>
                </div>
              </div>

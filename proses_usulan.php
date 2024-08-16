@@ -27,6 +27,27 @@ $tgl = date('d');
 $bln = date('m');
 $thn = date('Y');
 
+// Fetch the user's email from the database based on masyarakat_id
+$query = "SELECT email, nama FROM tb_masyarakat WHERE id_masyarakat = '$masyarakat_id'";
+$result = mysqli_query($koneksi, $query);
+$row = mysqli_fetch_assoc($result);
+$email = $row['email'];
+$nama = $row['nama'];
+
+include 'modules/mail/head2.php';
+$mail->addAddress($email, $nama_pengusul); //email penerima
+$mail->isHTML(true);
+$mail->Subject = "Berhasil Mengajukan Usulan"; //subject
+$mail->Body    = "
+<p>Yth ".$nama.",</p>
+<p>Permintaan Usulan dengan keterangan :</p>
+<p>NIK                : ".$nik_pengusul."</p>
+<p>Nama Lengkap       : ".$nama_pengusul."</p>
+<p>Tanggal Pengajuan  : ".date('d-m-Y')."</p>
+<p>Selamat, Anda Berhasil Mengajukan Usulan di Sistem Layanan dan Rujukan Terpadu Dinas Sosial P3AP2KB Kabupaten Banjar.</p>
+<p>TERIMAKASIH TELAH MENGGUNAKAN SLRT DINAS SOSIAL P3AP2KB KABUPATEN BANJAR</p>"; //isi email
+include 'modules/mail/foot.php';
+
 if (isset($_POST['tambah'])) {
   // Mengatur direktori penyimpanan file
   $targetDir = "uploads/";
@@ -114,15 +135,13 @@ if (isset($_POST['tambah'])) {
 
       if ($result) {
         // Jika berhasil, buat pesan sukses dengan menggunakan session
-        session_start();
         $_SESSION['result'] = 'success';
         $_SESSION['nomormu'] = $nomor_pengusulan;
         $_SESSION['id_pengusulan_bantuan'] = $lastInsertedId;
 
-        header("Location: sukses-daftar.php");
+        echo '<script>window.location.href = "sukses-daftar.php";</script>';
       } else {
         // Jika gagal, buat pesan error dengan menggunakan session
-        session_start();
         $_SESSION['result'] = 'error';
         $_SESSION['message'] = mysqli_error($koneksi);
         // Refresh halaman

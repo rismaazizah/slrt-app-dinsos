@@ -154,12 +154,16 @@ try {
       </tr>
       <tr>
         <?php
-        if ($row['usulan_id'] == 3) {
-          $tujuan = 'Kepala Dinas Kesehatan Kabupaten Banjar';
-        } elseif ($row['usulan_id'] == 4) {
-          $tujuan = 'Kepala Dinas Kesehatan Kabupaten Banjar';
+        if ($row['usulan_id'] == 4) {
+          $tujuan = 'Direktur RSUD Ratu Zalecha Martapura';
         } elseif ($row['usulan_id'] == 5) {
-          $tujuan = 'Direktur RSJ Sambang Lihum';
+          $tujuan = 'Ketua Badan Amil Zakat Nasional Kabupaten Banjar';
+        } elseif ($row['usulan_id'] == 8) {
+          $tujuan = 'Kepala Badan Pengelolaan Keuangan dan Aset Daerah';
+        } elseif ($row['usulan_id'] == 9) {
+          $tujuan = 'Kepala Dinas Pendidikan Kabupaten Banjar';
+        } else {
+          $tujuan = 'Kepala Dinas Sosial P3AP2KB Kabupaten Banjar';
         }
         ?>
         <td><?= $tujuan ?></td>

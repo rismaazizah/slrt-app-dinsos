@@ -2,8 +2,8 @@
 include '../config/koneksi.php';
 include '../modules/header.php';
 
-// Check if the user is logged in as an admin
-if (!isset($_SESSION['login']) || $_SESSION['role'] !== 'admin') {
+// Check if the user is logged in as an kepala dinas
+if (!isset($_SESSION['login']) || $_SESSION['role'] !== 'kadis') {
     header("Location: ../login.php");
     exit();
 }

@@ -364,7 +364,7 @@
               <label for="message" style="font-weight: 600; color: #37517e; margin-bottom: 10px;">Pesan</label>
               <textarea class="form-control" name="message" rows="10" required style="padding: 12px 15px; border-radius: 4px; box-shadow: none; font-size: 14px;"></textarea>
             </div>
-            <div class="text-center"><button type="submit" style="background: #47b2e4; border: 0; padding: 12px 34px; color: #fff; transition: 0.4s; border-radius: 50px; margin-top: 15px;">Kirim Pesan</button></div>
+            <div class="text-center"><button type="submit" style="background: #28a745; border: 0; padding: 12px 34px; color: #fff; transition: 0.4s; border-radius: 50px; margin-top: 15px;">Kirim Pesan</button></div>
           </form>
         </div>
       </div>

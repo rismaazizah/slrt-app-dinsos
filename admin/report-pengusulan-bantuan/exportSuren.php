@@ -106,7 +106,7 @@ try {
           <br>
           <span style="font-size: 12px;font-weight: lighter ;">Jl. Pendidikan Martapura 70614 Kalimantan Selatan Telp. (0511) 4721221,</span>
           <br>
-          <span style="font-size: 12px;font-weight: lighter;">Website : <u>Website : <u>www.dinsosp3ap2kb.banjarkab.go.id</u> Email : dinsosp3ap2kb@banjarkab.go.id</span>
+          <span style="font-size: 12px;font-weight: lighter;">Website : <u>www.dinsosp3ap2kb.banjarkab.go.id</u> Email : dinsosp3ap2kb@banjarkab.go.id</span>
         </td>
         <td>
         </td>
@@ -154,16 +154,16 @@ try {
       </tr>
       <tr>
         <?php
-        if ($row['usulan_id'] == 3) {
-          $tujuan = 'Kepala Dinas Kesehatan Kabupaten Banjar';
-        } elseif ($row['usulan_id'] == 4) {
-          $tujuan = 'Kepala Dinas Kesehatan Kabupaten Banjar';
+        if ($row['usulan_id'] == 4) {
+          $tujuan = 'Direktur RSUD Ratu Zalecha Martapura';
         } elseif ($row['usulan_id'] == 5) {
-          $tujuan = 'Direktur RSJ Sambang Lihum';
-        } elseif ($row['usulan_id'] == 6) {
-          $tujuan = 'Ketua Baznas Kabupaten Banjar';
-        } elseif ($row['usulan_id'] == 7) {
-          $tujuan = 'Ketua Baznas Kabupaten Banjar';
+          $tujuan = 'Ketua Badan Amil Zakat Nasional Kabupaten Banjar';
+        } elseif ($row['usulan_id'] == 8) {
+          $tujuan = 'Kepala Badan Pengelolaan Keuangan dan Aset Daerah';
+        } elseif ($row['usulan_id'] == 9) {
+          $tujuan = 'Kepala Dinas Pendidikan Kabupaten Banjar';
+        } else {
+          $tujuan = 'Kepala Dinas Sosial P3AP2KB Kabupaten Banjar';
         }
         ?>
         <td><?= $tujuan ?></td>
@@ -254,6 +254,7 @@ try {
         </td>
       </tr>
     </table>
+    <br>
     <table class="table">
       <tr>
         <td>

@@ -1,6 +1,6 @@
 <?php
 include '../modules/header.php';
-include '../config/is_admin.php';
+include '../config/is_kadis.php';
 ?>
 
 <title>Usulan</title>
