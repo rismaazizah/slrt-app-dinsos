@@ -1,6 +1,6 @@
 <?php
 include '../config/koneksi.php';
-include '../modules/header.php';
+include '../modules/header2.php';
 
 // Check if the user is logged in as an kepala dinas
 if (!isset($_SESSION['login']) || $_SESSION['role'] !== 'kadis') {

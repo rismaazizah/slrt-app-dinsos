@@ -1,24 +1,31 @@
 <?php
 include '../config/koneksi.php';
-include '../modules/header.php';
+include '../modules/header2.php';
 
 // Check if the user is logged in as an admin
 if (!isset($_SESSION['login']) || $_SESSION['role'] !== 'admin') {
     header("Location: ../login.php");
     exit();
 }
+// Initialize search query
+$search = isset($_GET['search']) ? $_GET['search'] : '';
 
-// Fetch usulan data from the database
+// Fetch usulan data from the database with search functionality
 $query = "SELECT u.id_usulan, u.jenis_usulan, pu.id_pengusulan_bantuan, pu.tgl_pengajuan, pu.status, m.nama AS nama_pengusul, m.id_masyarakat
           FROM tb_usulan u 
           JOIN tb_pengusulan_bantuan pu ON u.id_usulan = pu.usulan_id
           JOIN tb_masyarakat m ON pu.masyarakat_id = m.id_masyarakat 
+          WHERE m.nama LIKE ? OR u.jenis_usulan LIKE ?
           ORDER BY pu.tgl_pengajuan DESC";
-$result = mysqli_query($koneksi, $query);
+$stmt = $koneksi->prepare($query);
+$searchParam = "%$search%";
+$stmt->bind_param("ss", $searchParam, $searchParam);
+$stmt->execute();
+$result = $stmt->get_result();
 
 // Check if the query was successful
 if (!$result) {
-    die("Query failed: " . mysqli_error($koneksi));
+    die("Query failed: " . $koneksi->error);
 }
 
 // Function to get usulan details
@@ -41,6 +48,17 @@ function getUsulanDetails($koneksi, $id_pengusulan_bantuan) {
     <h1 class="h3 mb-2 text-gray-800">Daftar Usulan</h1>
     <div class="card shadow mb-4">
         <div class="card-body">
+            <div class="row mb-3">
+                <div class="col-12">
+                    <form action="" method="GET" class="form-inline">
+                        <div class="form-group mx-sm-3 mb-2">
+                            <label for="search" class="sr-only">Cari</label>
+                            <input type="text" class="form-control" id="search" name="search" placeholder="Cari nama atau jenis usulan" value="<?php echo htmlspecialchars($search); ?>">
+                        </div>
+                        <button type="submit" class="btn btn-primary mb-2">Cari</button>
+                    </form>
+                </div>
+            </div>
             <div class="table-responsive">
                 <table class="table table-bordered table-striped" id="dataTable" width="100%" cellspacing="0">
                     <thead class="bg-primary text-white">
@@ -56,7 +74,7 @@ function getUsulanDetails($koneksi, $id_pengusulan_bantuan) {
                     <tbody>
                         <?php 
                         $no = 1;
-                        while ($row = mysqli_fetch_assoc($result)) : 
+                        while ($row = $result->fetch_assoc()) : 
                         ?>
                             <tr>
                                 <td><?php echo $no++; ?></td>

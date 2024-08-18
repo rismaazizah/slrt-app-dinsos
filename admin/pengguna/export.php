@@ -117,7 +117,7 @@ try {
             <td><?= $no++; ?></td>
             <td><?= $row['username']; ?></td>
             <td><?= $row['password']; ?></td>
-            <td><?= $row['status']; ?></td>
+            <td><?= $row['role']; ?></td>
           </tr>
         <?php } ?>
       </tbody>

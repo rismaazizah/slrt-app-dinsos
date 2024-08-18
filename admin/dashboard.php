@@ -214,7 +214,7 @@ include_once '../config/koneksi.php';
 
     
  <!-- New Participant Registrations Card -->
-    <div class="col-xl-3 col-md-6 mb-4">
+    <<div class="col-xl-3 col-md-6 mb-4">
       <div class="card border-left-success shadow h-100 py-2">
         <div class="card-body">
           <div class="row no-gutters align-items-center">
@@ -226,27 +226,29 @@ include_once '../config/koneksi.php';
               <form method="POST" action="">
                 <label for="tanggal_mulai">Dari Tanggal:</label>
                 <input type="date" id="tanggal_mulai" name="tanggal_mulai" required>
-                <button type="submit">Tampilkan</button>
+                <button type="submit" class="btn btn-primary btn-sm">Tampilkan</button>
               </form>
 
               <?php
               if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 $tanggal_mulai = $_POST['tanggal_mulai'];
-            $tanggal_selesai = date("Y-m-d"); // Hari ini
+                $tanggal_selesai = date("Y-m-d"); // Hari ini
 
-            // Query untuk menghitung jumlah pendaftar dari tanggal yang dipilih hingga hari ini
-            $query = "SELECT COUNT(*) as total FROM tb_user WHERE tanggal_daftar BETWEEN '$tanggal_mulai' AND '$tanggal_selesai'";
-            $result = mysqli_query($koneksi, $query);
-            if ($result) {
-              $row = mysqli_fetch_assoc($result);
-              $nilai = $row['total'];
-            } else {
-              $nilai = "Error: " . mysqli_error($koneksi);
-            }
-          } else {
-            $nilai = "Pilih tanggal untuk melihat jumlah pendaftar";
-          }
-          ?>
+                // Query untuk menghitung jumlah pendaftar dari tanggal yang dipilih hingga hari ini
+                $query = "SELECT COUNT(*) as total FROM tb_user WHERE tanggal_daftar BETWEEN '$tanggal_mulai' AND '$tanggal_selesai'";
+                $result = mysqli_query($koneksi, $query);
+                if ($result) {
+                  $row = mysqli_fetch_assoc($result);
+                  $nilai = $row['total'];
+                  // Add print button if there are results
+                  echo "<a href='cetak_pendaftaran.php?tanggal_mulai=$tanggal_mulai&tanggal_selesai=$tanggal_selesai' target='_blank' class='btn btn-success btn-sm mt-2'>Cetak Data</a>";
+                } else {
+                  $nilai = "Error: " . mysqli_error($koneksi);
+                }
+              } else {
+                $nilai = "Pilih tanggal untuk melihat jumlah pendaftar";
+              }
+              ?>
           <div class="h5 mb-0 font-weight-bold text-gray-800"><?= $nilai ?></div>
         </div>
         <div class="col-auto">

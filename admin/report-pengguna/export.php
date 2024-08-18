@@ -101,7 +101,7 @@ try {
           <th>No</th>
           <th>Username</th>
           <th>Password</th>
-          <th>status</th>
+          <th>Status</th>
         </tr>
       </thead>
       <tbody>
@@ -115,9 +115,9 @@ try {
         ?>
           <tr>
             <td><?= $no++; ?></td>
-            <td><?= $row['username']; ?></td>
-            <td><?= $row['password']; ?></td>
-            <td><?= $row['status']; ?></td>
+            <td><?= htmlspecialchars($row['username']); ?></td>
+            <td><?= htmlspecialchars($row['password']); ?></td>
+            <td><?= htmlspecialchars($row['role']); ?></td>
           </tr>
         <?php } ?>
       </tbody>

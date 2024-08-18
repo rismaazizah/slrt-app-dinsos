@@ -86,7 +86,7 @@ try {
 
 
     <br>
-    <h2 style="text-align: center;"><u>Rekap Jenis-Jenis dan Persyratan Usulan</u></h2>
+    <h2 style="text-align: center;"><u>Rekap Jenis-Jenis dan Persyaratan Usulan</u></h2>
     <br>
 
     <table class="table bordered">

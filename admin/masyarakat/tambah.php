@@ -45,7 +45,7 @@
              <div class="col-6">
                <div class="form-group">
                  <label>Nomor Kartu Keluarga</label>
-                 <input type="text" class="form-control" name="kk" placeholder="Nomor Kartu Keluarga ..." minlength="16" maxlength="16">
+                 <input type="text" class="form-control" name="kk" placeholder="Nomor Kartu Keluarga ..." minlength="16" maxlength="16" required>
                </div>
              </div>
              <div class="col-6">

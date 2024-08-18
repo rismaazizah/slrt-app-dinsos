@@ -237,30 +237,51 @@
           <div class="accordion-list">
             <ul>
               <li>
-                <a data-bs-toggle="collapse" class="collapse" data-bs-target="#accordion-list-1"><span>01</span> Bantuan Gasan Masyarakat Miskin <b>(BAGAMIS)</b> <i class="bx bx-chevron-down icon-show"></i><i class="bx bx-chevron-up icon-close"></i></a>
+                <a data-bs-toggle="collapse" class="collapse" data-bs-target="#accordion-list-1"><span>01</span> Layanan Keterangan Terdaftar Data Terpadu Kesejahteraan Sosial Kementerian Sosial R.I (DTKS) <i class="bx bx-chevron-down icon-show"></i><i class="bx bx-chevron-up icon-close"></i></a>
                 <div id="accordion-list-1" class="collapse show" data-bs-parent=".accordion-list">
                   <p>
                     <ul>
-                      <li><i class="ri-check-line"></i> Fotokopi Kartu Keluarga Kabupaten Banjar (Terbaru)</li>
-                      <li><i class="ri-check-line"></i> Fotokopi Kartu Tanda Penduduk (KTP) Kabupaten Banjar</li>
-                      <li><i class="ri-check-line"></i> Surat Keterangan Tidak Mampu (SKTM) dari Pembakal yang diketahui Camat, Puskesos dan Supervisor/Fasilitator Kecamatan</li>
-                      <li><i class="ri-check-line"></i> Surat Rujukan dari Puskesmas</li>
-                      <li><i class="ri-check-line"></i> Surat Rawat Inap dari Rumah Sakit</li>
+                      <li><i class="ri-check-line"></i> Terdata dalam Data Terpadu Kesejahteraan Sosial (DTKS) </li>
+                      <li><i class="ri-check-line"></i> Fotokopi Kartu Tanda Penduduk</li>
+                      <li><i class="ri-check-line"></i> Fotokopi Kartu Tanda Penduduk Kepala Keluarga</li>
+                      <li><i class="ri-check-line"></i> Fotokopi Kartu Keluarga</li>
+                      <li><i class="ri-check-line"></i> SSurat Keterangan Tidak Mampu yang ditanda tangani oleh Pambakal/Lurah dan diketahui Camat</li>
                       <li><i class="ri-check-line"></i> Foto Rumah (Depan, Samping dan Belakang)</li>
-                      <li><i class="ri-check-line"></i> Materai 10.000</li>
                     </ul>
                   </p>
                 </div>
               </li>
 
               <li>
-                <a data-bs-toggle="collapse" data-bs-target="#accordion-list-2" class="collapsed"><span>02</span> Bantuan Iuran Jaminan Kesehatan Nasional <b>(PBI-JKN)</b> <i class="bx bx-chevron-down icon-show"></i><i class="bx bx-chevron-up icon-close"></i></a>
+                <a data-bs-toggle="collapse" data-bs-target="#accordion-list-2" class="collapsed"><span>02</span> Layanan Rekomendasi Permohonan Bantuan Biaya Pendampingan <i class="bx bx-chevron-down icon-show"></i><i class="bx bx-chevron-up icon-close"></i></a>
                 <div id="accordion-list-2" class="collapse" data-bs-parent=".accordion-list">
                   <p>
                     <ul>
-                      <li><i class="ri-check-line"></i> Fotokopi Kartu Keluarga Kabupaten Banjar (Terbaru)</li>
-                      <li><i class="ri-check-line"></i> Fotokopi Kartu Tanda Penduduk (KTP) Kabupaten Banjar</li>
-                      <li><i class="ri-check-line"></i> Surat Keterangan Tidak Mampu (SKTM) dari Pembakal yang diketahui Camat, Puskesos dan Supervisor/Fasilitator Kecamatan</li>
+                      <li><i class="ri-check-line"></i> Fotokopi Kartu Tanda Penduduk Pasien</li>
+                      <li><i class="ri-check-line"></i> Fotokopi Kartu Tanda Penduduk Kepala Keluarga</li>
+                      <li><i class="ri-check-line"></i> Fotokopi Kartu Tanda Penduduk Penanggung Jawab</li>
+                      <li><i class="ri-check-line"></i> Fotokopi Kartu Keluarga</li>
+                      <li><i class="ri-check-line"></i> Surat Rujukan atau Surat Kontrol Dari Puskesmas</li>
+                      <li><i class="ri-check-line"></i> Surat Rawat Inap Dari Rumah Sakit</li>
+                      <li><i class="ri-check-line"></i> Surat Keterangan Tidak Mampu yang ditanda tangani oleh Pambakal/Lurah dan diketahui Camat</li>
+                      <li><i class="ri-check-line"></i> Foto Rumah (Depan, Belakang dan Samping)</li>
+                      <li><i class="ri-check-line"></i> Materai 10.000 bagi Pasien yang tidak masuk dalam Data Terpadu Kesejahteraan Sosial (DTKS)</li>
+                      <li><i class="ri-check-line"></i> Rincian Biaya</li>
+                    </ul>
+                  </p>
+                </div>
+              </li>
+
+              <li>
+                <a data-bs-toggle="collapse" data-bs-target="#accordion-list-3" class="collapsed"><span>03</span> Layanan Rekomendasi Permohonan Bantuan Sosial dan Ekonomi <i class="bx bx-chevron-down icon-show"></i><i class="bx bx-chevron-up icon-close"></i></a>
+                <div id="accordion-list-3" class="collapse" data-bs-parent=".accordion-list">
+                  <p>
+                    <ul>
+                      <li><i class="ri-check-line"></i> Rencana Anggaran Belanja</li>
+                      <li><i class="ri-check-line"></i> Fotokopi Kartu Tanda Penduduk Kepala Keluarga</li>
+                      <li><i class="ri-check-line"></i> Fotokopi Kartu Keluarga</li>
+                      <li><i class="ri-check-line"></i> Surat Keterangan Kepemilikan Tanah</li>
+                      <li><i class="ri-check-line"></i> Surat Keterangan Tidak Mampu yang ditanda tangani oleh Pambakal/Lurah dan diketahui Camat</li>
                       <li><i class="ri-check-line"></i> Foto Rumah (Depan, Samping dan Belakang)</li>
                     </ul>
                   </p>
@@ -268,17 +289,19 @@
               </li>
 
               <li>
-                <a data-bs-toggle="collapse" data-bs-target="#accordion-list-3" class="collapsed"><span>03</span> Bantuan Biaya Berobat ke RSJ Sambang Lihum <i class="bx bx-chevron-down icon-show"></i><i class="bx bx-chevron-up icon-close"></i></a>
-                <div id="accordion-list-3" class="collapse" data-bs-parent=".accordion-list">
+                <a data-bs-toggle="collapse" data-bs-target="#accordion-list-4" class="collapsed"><span>04</span> Layanan Rekomendasi Permohonan Bantuan Biaya/Berobat Aktivasi Jaminan Kesehatan APBD <i class="bx bx-chevron-down icon-show"></i><i class="bx bx-chevron-up icon-close"></i></a>
+                <div id="accordion-list-4" class="collapse" data-bs-parent=".accordion-list">
                   <p>
                     <ul>
-                      <li><i class="ri-check-line"></i> Fotokopi Kartu Keluarga Kabub paten Banjar (Terbaru)</li>
-                      <li><i class="ri-check-line"></i> Fotokopi Kartu Tanda Penduduk (KTP) Kabupaten Banjar</li>
-                      <li><i class="ri-check-line"></i> Surat Keterangan Tidak Mampu (SKTM) dari Pembakal yang diketahui Camat, Puskesos dan Supervisor/Fasilitator Kecamatan</li>
-                      <li><i class="ri-check-line"></i> Surat Rujukan dari Puskesmas</li>
-                      <li><i class="ri-check-line"></i> Surat Rawat Inap dari Rumah Sakit</li>
-                      <li><i class="ri-check-line"></i> Foto Rumah (Depan, Samping dan Belakang)</li>
-                      <li><i class="ri-check-line"></i> Materai 10.000</li>
+                      <li><i class="ri-check-line"></i> Fotokopi Kartu Tanda Penduduk Pasien</li>
+                      <li><i class="ri-check-line"></i> Fotokopi Kartu Tanda Penduduk Kepala Keluarga</li>
+                      <li><i class="ri-check-line"></i> Fotokopi Kartu Tanda Penduduk Penanggung Jawab</li>
+                      <li><i class="ri-check-line"></i> Fotokopi Kartu Keluarga</li>
+                      <li><i class="ri-check-line"></i> Surat Rujukan atau Surat Kontrol Dari Puskesmas</li>
+                      <li><i class="ri-check-line"></i> Surat Rawat Inap Dari Rumah Sakit</li>
+                      <li><i class="ri-check-line"></i> Surat Keterangan Tidak Mampu yang ditanda tangani oleh Pambakal/Lurah dan diketahui Camat</li>
+                      <li><i class="ri-check-line"></i> Foto Rumah (Depan, Belakang dan Samping)</li>
+                      <li><i class="ri-check-line"></i> Materai 10.000 bagi Pasien yang tidak masuk dalam Data Terpadu Kesejahteraan Sosial (DTKS)</li>
                     </ul>
                   </p>
                 </div>

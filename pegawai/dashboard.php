@@ -24,7 +24,7 @@ include_once '../config/koneksi.php';
           <div class="row no-gutters align-items-center">
             <div class="col mr-2">
               <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
-                Total Pegawai</div>
+              Total Pegawai</div>
               <?php
               $query = "SELECT * FROM tb_pegawai";
               $result = mysqli_query($koneksi, $query);
@@ -47,7 +47,7 @@ include_once '../config/koneksi.php';
           <div class="row no-gutters align-items-center">
             <div class="col mr-2">
               <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
-                Total Masyarakat</div>
+              Total Masyarakat</div>
               <?php
               $query = "SELECT * FROM tb_masyarakat";
               $result = mysqli_query($koneksi, $query);
@@ -70,7 +70,7 @@ include_once '../config/koneksi.php';
           <div class="row no-gutters align-items-center">
             <div class="col mr-2">
               <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
-                Total Usulan</div>
+              Total Usulan</div>
               <?php
               $query = "SELECT * FROM tb_usulan";
               $result = mysqli_query($koneksi, $query);
@@ -93,7 +93,7 @@ include_once '../config/koneksi.php';
           <div class="row no-gutters align-items-center">
             <div class="col mr-2">
               <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
-                Total Pengusulan Bantuan</div>
+              Total Pengusulan Bantuan</div>
               <?php
               $query = "SELECT * FROM tb_pengusulan_bantuan";
               $result = mysqli_query($koneksi, $query);
@@ -113,14 +113,15 @@ include_once '../config/koneksi.php';
 
   <div class="row">
 
+
     <!-- Earnings (Monthly) Card Example -->
-    <!-- <div class="col-xl-3 col-md-6 mb-4">
+    <div class="col-xl-3 col-md-6 mb-4">
       <div class="card border-left-success shadow h-100 py-2">
         <div class="card-body">
           <div class="row no-gutters align-items-center">
             <div class="col mr-2">
               <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
-                Total Konsultasi</div>
+              Total Konsultasi</div>
               <?php
               $query = "SELECT * FROM tb_konsultasi";
               $result = mysqli_query($koneksi, $query);
@@ -134,7 +135,7 @@ include_once '../config/koneksi.php';
           </div>
         </div>
       </div>
-    </div> -->
+    </div>
 
     <!-- Earnings (Monthly) Card Example -->
     <div class="col-xl-3 col-md-6 mb-4">
@@ -143,7 +144,7 @@ include_once '../config/koneksi.php';
           <div class="row no-gutters align-items-center">
             <div class="col mr-2">
               <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
-                Total Kunjungan</div>
+              Total Kunjungan</div>
               <?php
               $query = "SELECT * FROM tb_kunjungan";
               $result = mysqli_query($koneksi, $query);
@@ -160,13 +161,13 @@ include_once '../config/koneksi.php';
     </div>
 
     <!-- Earnings (Monthly) Card Example -->
-    <!-- <div class="col-xl-3 col-md-6 mb-4">
+    <div class="col-xl-3 col-md-6 mb-4">
       <div class="card border-left-success shadow h-100 py-2">
         <div class="card-body">
           <div class="row no-gutters align-items-center">
             <div class="col mr-2">
               <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
-                Total Pengguna</div>
+              Total Pengguna</div>
               <?php
               $query = "SELECT * FROM tb_user";
               $result = mysqli_query($koneksi, $query);
@@ -180,7 +181,81 @@ include_once '../config/koneksi.php';
           </div>
         </div>
       </div>
-    </div> -->
+    </div>
+
+
+<!-- Accepted Services Card -->
+    <div class="col-xl-3 col-md-6 mb-4">
+      <div class="card border-left-success shadow h-100 py-2">
+        <div class="card-body">
+          <div class="row no-gutters align-items-center">
+            <div class="col mr-2">
+              <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
+                Layanan yang Diterima</div>
+              <?php
+              $query = "SELECT COUNT(*) as total FROM tb_pengusulan_bantuan WHERE status = 'diterima'";
+              $result = mysqli_query($koneksi, $query);
+              if ($result) {
+                $row = mysqli_fetch_assoc($result);
+                $nilai = $row['total'];
+              } else {
+                $nilai = "Error: " . mysqli_error($koneksi);
+              }
+              ?>
+              <div class="h5 mb-0 font-weight-bold text-gray-800"><?= $nilai ?></div>
+            </div>
+            <div class="col-auto">
+              <i class="fas fa-check-circle fa-2x text-gray-300"></i>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    
+ <!-- New Participant Registrations Card -->
+    <div class="col-xl-3 col-md-6 mb-4">
+      <div class="card border-left-success shadow h-100 py-2">
+        <div class="card-body">
+          <div class="row no-gutters align-items-center">
+            <div class="col mr-2">
+              <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
+              Pendaftaran Peserta Baru</div>
+
+              <!-- Form untuk memilih tanggal awal -->
+              <form method="POST" action="">
+                <label for="tanggal_mulai">Dari Tanggal:</label>
+                <input type="date" id="tanggal_mulai" name="tanggal_mulai" required>
+                <button type="submit">Tampilkan</button>
+              </form>
+
+              <?php
+              if ($_SERVER["REQUEST_METHOD"] == "POST") {
+                $tanggal_mulai = $_POST['tanggal_mulai'];
+            $tanggal_selesai = date("Y-m-d"); // Hari ini
+
+            // Query untuk menghitung jumlah pendaftar dari tanggal yang dipilih hingga hari ini
+            $query = "SELECT COUNT(*) as total FROM tb_user WHERE tanggal_daftar BETWEEN '$tanggal_mulai' AND '$tanggal_selesai'";
+            $result = mysqli_query($koneksi, $query);
+            if ($result) {
+              $row = mysqli_fetch_assoc($result);
+              $nilai = $row['total'];
+            } else {
+              $nilai = "Error: " . mysqli_error($koneksi);
+            }
+          } else {
+            $nilai = "Pilih tanggal untuk melihat jumlah pendaftar";
+          }
+          ?>
+          <div class="h5 mb-0 font-weight-bold text-gray-800"><?= $nilai ?></div>
+        </div>
+        <div class="col-auto">
+          <i class="fas fa-calendar-day fa-2x text-gray-300"></i>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
 
 
   </div>

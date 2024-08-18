@@ -28,6 +28,23 @@
   <!-- Template Main CSS File -->
   <link href="assets/library/Arsha/assets/css/style.css" rel="stylesheet">
 
+  <!-- Custom CSS to ensure footer sticks to bottom -->
+  <style>
+    html, body {
+      height: 100%;
+    }
+    body {
+      display: flex;
+      flex-direction: column;
+    }
+    main {
+      flex: 1 0 auto;
+    }
+    footer {
+      flex-shrink: 0;
+    }
+  </style>
+
   <!-- =======================================================
   * Template Name: Arsha
   * Updated: Jul 27 2023 with Bootstrap v5.3.1
