@@ -9,6 +9,7 @@ $db = "slrt-app";
 // Start the session if it hasn't been started already
 if (session_status() == PHP_SESSION_NONE) {
     session_start();
+    error_reporting(0);
 }
 
 // Establish database connection

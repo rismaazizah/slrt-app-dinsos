@@ -166,22 +166,22 @@ try {
       <tr style="text-align: center;">
         <td></td>
         <td>Kepala Dinas Sosial P3AP2KB <br>
-            Kabupaten Banjar,
-        </td>
-      </tr>
-      <tr style="text-align: center;">
-        <td></td>
-        <td>
-          <br><br><br><br>
-        </td>
-      </tr>
-      <tr style="text-align: center;">
-        <td></td>
-        <td>
-          Dian Marliana, S.STP., M.Si <br>
-          Pembina Tingkat I <br>
-          NIP. 19780312 199612 2 001
-         </td>
+                    Kabupaten Banjar,
+                </td>
+            </tr>
+            <tr style="text-align: center;">
+                <td></td>
+                <td>
+                    <img src="../assets/img/tte.png" height="110" alt="" class="gambar">
+                </td>
+            </tr>
+            <tr style="text-align: center;">
+                <td></td>
+                <td>
+                    Dian Marliana, S.STP., M.Si <br>
+                    Pembina Tingkat I <br>
+                    NIP. 19780312 199612 2 001
+                </td>
       </tr>
     </table>
 

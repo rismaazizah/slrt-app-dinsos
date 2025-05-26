@@ -98,156 +98,158 @@ function tgl_indo($tanggal)
         </form>
       </div>
       <div class="col-12">
-        <table class="table table-bordered" id="mytable" style="width: 100%;">
-          <thead>
-            <tr>
-              <th>No</th>
-              <th>Nomor Pengusulan</th>
-              <th>Nama Pemohon</th>
-              <th>Jenis Usulan</th>
-              <th>Status</th>
-              <th>Tanggal Pengajuan</th>
-              <th>Kelengkapan Berkas</th>
-              <th>Jenis Rujukan</th>
-              <th>Surat Rekomendasi</th>
-              <th>Petugas Verifikasi</th>
-              <th>BAVD</th>
-            </tr>
-          </thead>
-          <tbody>
-            <?php
-            include_once '../config/koneksi.php';
-            $no = 1;
-            $query = "SELECT * FROM tb_pengusulan_bantuan 
-              JOIN tb_masyarakat ON tb_pengusulan_bantuan.masyarakat_id = tb_masyarakat.id_masyarakat
-              JOIN tb_usulan ON tb_pengusulan_bantuan.usulan_id = tb_usulan.id_usulan";
-
-            // Apply filter if set
-            if (isset($_GET['filterType']) && isset($_GET['filterValue']) && !empty($_GET['filterValue'])) {
-              $filterType = $_GET['filterType'];
-              $filterValue = $_GET['filterValue'];
-              
-              switch ($filterType) {
-                case 'day':
-                  $query .= " WHERE DATE(tb_pengusulan_bantuan.tgl_pengajuan) = '$filterValue'";
-                  break;
-                case 'month':
-                  $month = date('m', strtotime($filterValue));
-                  $year = date('Y', strtotime($filterValue));
-                  $query .= " WHERE MONTH(tb_pengusulan_bantuan.tgl_pengajuan) = '$month' AND YEAR(tb_pengusulan_bantuan.tgl_pengajuan) = '$year'";
-                  break;
-                case 'year':
-                  $query .= " WHERE YEAR(tb_pengusulan_bantuan.tgl_pengajuan) = '$filterValue'";
-                  break;
-              }
-            }
-
-            $query .= " ORDER BY tb_pengusulan_bantuan.id_pengusulan_bantuan DESC";
-            $result = mysqli_query($koneksi, $query);
-            while ($row = mysqli_fetch_assoc($result)) {
-              $q = "SELECT * FROM tb_pegawai WHERE id_pegawai = '{$row['pegawai_id']}'";
-              $res = mysqli_query($koneksi, $q);
-              $p = mysqli_fetch_assoc($res);
-            ?>
+        <div class="table-responsive" style="overflow-x: auto;">
+          <table class="table table-bordered" id="mytable" style="width: 100%;">
+            <thead>
               <tr>
-                <td><?= $no++; ?></td>
-                <td><?= $row['nomor_pengusulan']; ?></td>
-                <td><?= $row['nama']; ?></td>
-                <td>
-                  <?= $row['jenis_usulan']; ?>
-                </td>
-                <td>
-                  <?php
-                  if ($row['status'] == 'Pending') {
-                  ?>
-                    <div class="badge badge-warning py-2 px-3">Menunggu Verifikasi</div>
-                  <?php
-                  } elseif (($row['status'] == 'Diterima')) {
-                  ?>
-                    <div class="badge badge-success py-2 px-3">Diterima</div>
-                  <?php
-                  } elseif (($row['status'] == 'Ditolak')) {
-                  ?>
-                    <div class="badge badge-danger py-2 px-3">Ditolak</div>
-                  <?php
-                  }
-                  ?>
-                </td>
-                <td><?= tgl_indo($row['tgl_pengajuan']); ?></td>
-                <td>
-                  <?php
-                  if ($row['kelengkapan_berkas'] == 0) {
-                  ?>
-                    <div class="badge badge-warning py-2 px-3">Belum Lengkap</div>
-                  <?php
-                  } else {
-                  ?>
-                    <div class="badge badge-success py-2 px-3">Sudah Lengkap</div>
-                  <?php
-                  }
-                  ?>
-                </td>
-                <td>
-                  <?php
-                  if ($row['jenis_rujukan'] == '0' || $row['jenis_rujukan'] == '') {
-                    echo '<div class="badge badge-warning py-2 px-3">Belum Ada Rujukan</div>';
-                  } elseif ($row['jenis_rujukan'] == '1') {
-                    echo '<div class="badge badge-success py-2 px-3">Rumah Sakit</div>';
-                  } elseif ($row['jenis_rujukan'] == '2') {
-                    echo '<div class="badge badge-success py-2 px-3">Sekolah</div>';
-                  } elseif ($row['jenis_rujukan'] == '3') {
-                    echo '<div class="badge badge-success py-2 px-3">Kampus</div>';
-                  } elseif ($row['jenis_rujukan'] == '4') {
-                    echo '<div class="badge badge-success py-2 px-3">Badan Amil Zakat Nasional (BAZNAS)</div>';
-                  } elseif ($row['jenis_rujukan'] == '5') {
-                    echo '<div class="badge badge-success py-2 px-3">Badan Pengelolaan Keuangan dan Aset Daerah (BPKAD)</div>';
-                  } else {
-                    echo '<div class="badge badge-success py-2 px-3">' . $row['jenis_rujukan'] . '</div>';
-                  }
-                  ?>
-                </td>
-                <td>
-                  <?php
-                  if ($row['status'] == 'Diterima' && $row['kelengkapan_berkas'] == 1) {
-                  ?>
-                    <a href="report-pengusulan-bantuan.php?page=exportSuren&id_pengusulan_bantuan=<?= $row['id_pengusulan_bantuan']; ?>" class="btn btn-info" target="_blank">Print</a>
-                  <?php
-                  }
-                  ?>
-                </td>
-
-                <td>
-                  <?= $p ? $p['nama_pegawai'] : '-' ?>
-                </td>
-                <td class="not-export-col">
-                  <?php
-                  if ($row['status'] == 'Diterima' && $row['kelengkapan_berkas'] == 1) {
-                  ?>
-                    <!-- <a href="report-pengusulan-bantuan.php?page=detail&id_pengusulan_bantuan=<?= $row['id_pengusulan_bantuan']; ?>" class="btn btn-success">Detail</a> -->
-                  <?php
-                  } else {
-                  ?>
-                    <!-- <a href="report-pengusulan-bantuan.php?page=edit&id_pengusulan_bantuan=<?= $row['id_pengusulan_bantuan']; ?>" class="btn btn-warning">Edit</a> -->
-                  <?php
-                  }
-                  ?>
-
-                  <?php
-                  if ($row['status'] == 'Pending') {
-                  ?>
-                    <!-- <a href="report-pengusulan-bantuan.php?page=hapus&id_pengusulan_bantuan=<?= $row['id_pengusulan_bantuan']; ?>" class="btn btn-danger" onclick="return confirm('Apakah anda yakin ingin menghapus data')">Hapus</a> -->
-                  <?php
-                  } elseif ($row['status'] == 'Diterima' && $row['kelengkapan_berkas'] == 1) {
-                  ?>
-                    <a href="report-pengusulan-bantuan.php?page=exportSingle&id_pengusulan_bantuan=<?= $row['id_pengusulan_bantuan']; ?>" class="btn btn-info" target="_blank">Print</a>
-                  <?php
-                  }
-                  ?>
-                </td>
+                <th>No</th>
+                <th>Nomor Pengusulan</th>
+                <th>Nama Pemohon</th>
+                <th>Jenis Usulan</th>
+                <th>Status</th>
+                <th>Tanggal Pengajuan</th>
+                <th>Kelengkapan Berkas</th>
+                <th>Jenis Rujukan</th>
+                <th>Surat Rekomendasi</th>
+                <th>Petugas Verifikasi</th>
+                <th>BAVD</th>
               </tr>
-            <?php } ?>
-          </tbody>
-        </table>
+            </thead>
+            <tbody>
+              <?php
+              include_once '../config/koneksi.php';
+              $no = 1;
+              $query = "SELECT * FROM tb_pengusulan_bantuan 
+                JOIN tb_masyarakat ON tb_pengusulan_bantuan.masyarakat_id = tb_masyarakat.id_masyarakat
+                JOIN tb_usulan ON tb_pengusulan_bantuan.usulan_id = tb_usulan.id_usulan";
+
+              // Apply filter if set
+              if (isset($_GET['filterType']) && isset($_GET['filterValue']) && !empty($_GET['filterValue'])) {
+                $filterType = $_GET['filterType'];
+                $filterValue = $_GET['filterValue'];
+                
+                switch ($filterType) {
+                  case 'day':
+                    $query .= " WHERE DATE(tb_pengusulan_bantuan.tgl_pengajuan) = '$filterValue'";
+                    break;
+                  case 'month':
+                    $month = date('m', strtotime($filterValue));
+                    $year = date('Y', strtotime($filterValue));
+                    $query .= " WHERE MONTH(tb_pengusulan_bantuan.tgl_pengajuan) = '$month' AND YEAR(tb_pengusulan_bantuan.tgl_pengajuan) = '$year'";
+                    break;
+                  case 'year':
+                    $query .= " WHERE YEAR(tb_pengusulan_bantuan.tgl_pengajuan) = '$filterValue'";
+                    break;
+                }
+              }
+
+              $query .= " ORDER BY tb_pengusulan_bantuan.id_pengusulan_bantuan DESC";
+              $result = mysqli_query($koneksi, $query);
+              while ($row = mysqli_fetch_assoc($result)) {
+                $q = "SELECT * FROM tb_pegawai WHERE id_pegawai = '{$row['pegawai_id']}'";
+                $res = mysqli_query($koneksi, $q);
+                $p = mysqli_fetch_assoc($res);
+              ?>
+                <tr>
+                  <td><?= $no++; ?></td>
+                  <td><?= $row['nomor_pengusulan']; ?></td>
+                  <td><?= $row['nama']; ?></td>
+                  <td>
+                    <?= $row['jenis_usulan']; ?>
+                  </td>
+                  <td>
+                    <?php
+                    if ($row['status'] == 'Pending') {
+                    ?>
+                      <div class="badge badge-warning py-2 px-3">Menunggu Verifikasi</div>
+                    <?php
+                    } elseif (($row['status'] == 'Diterima')) {
+                    ?>
+                      <div class="badge badge-success py-2 px-3">Diterima</div>
+                    <?php
+                    } elseif (($row['status'] == 'Ditolak')) {
+                    ?>
+                      <div class="badge badge-danger py-2 px-3">Ditolak</div>
+                    <?php
+                    }
+                    ?>
+                  </td>
+                  <td><?= tgl_indo($row['tgl_pengajuan']); ?></td>
+                  <td>
+                    <?php
+                    if ($row['kelengkapan_berkas'] == 0) {
+                    ?>
+                      <div class="badge badge-warning py-2 px-3">Belum Lengkap</div>
+                    <?php
+                    } else {
+                    ?>
+                      <div class="badge badge-success py-2 px-3">Sudah Lengkap</div>
+                    <?php
+                    }
+                    ?>
+                  </td>
+                  <td>
+                    <?php
+                    if ($row['jenis_rujukan'] == '0' || $row['jenis_rujukan'] == '') {
+                      echo '<div class="badge badge-warning py-2 px-3">Belum Ada Rujukan</div>';
+                    } elseif ($row['jenis_rujukan'] == '1') {
+                      echo '<div class="badge badge-success py-2 px-3">Rumah Sakit</div>';
+                    } elseif ($row['jenis_rujukan'] == '2') {
+                      echo '<div class="badge badge-success py-2 px-3">Sekolah</div>';
+                    } elseif ($row['jenis_rujukan'] == '3') {
+                      echo '<div class="badge badge-success py-2 px-3">Kampus</div>';
+                    } elseif ($row['jenis_rujukan'] == '4') {
+                      echo '<div class="badge badge-success py-2 px-3">Badan Amil Zakat Nasional (BAZNAS)</div>';
+                    } elseif ($row['jenis_rujukan'] == '5') {
+                      echo '<div class="badge badge-success py-2 px-3">Badan Pengelolaan Keuangan dan Aset Daerah (BPKAD)</div>';
+                    } else {
+                      echo '<div class="badge badge-success py-2 px-3">' . $row['jenis_rujukan'] . '</div>';
+                    }
+                    ?>
+                  </td>
+                  <td>
+                    <?php
+                    if ($row['status'] == 'Diterima' && $row['kelengkapan_berkas'] == 1) {
+                    ?>
+                      <a href="report-pengusulan-bantuan.php?page=exportSuren&id_pengusulan_bantuan=<?= $row['id_pengusulan_bantuan']; ?>" class="btn btn-info" target="_blank">Print</a>
+                    <?php
+                    }
+                    ?>
+                  </td>
+
+                  <td>
+                    <?= $p ? $p['nama_pegawai'] : '-' ?>
+                  </td>
+                  <td class="not-export-col">
+                    <?php
+                    if ($row['status'] == 'Diterima' && $row['kelengkapan_berkas'] == 1) {
+                    ?>
+                      <!-- <a href="report-pengusulan-bantuan.php?page=detail&id_pengusulan_bantuan=<?= $row['id_pengusulan_bantuan']; ?>" class="btn btn-success">Detail</a> -->
+                    <?php
+                    } else {
+                    ?>
+                      <!-- <a href="report-pengusulan-bantuan.php?page=edit&id_pengusulan_bantuan=<?= $row['id_pengusulan_bantuan']; ?>" class="btn btn-warning">Edit</a> -->
+                    <?php
+                    }
+                    ?>
+
+                    <?php
+                    if ($row['status'] == 'Pending') {
+                    ?>
+                      <!-- <a href="report-pengusulan-bantuan.php?page=hapus&id_pengusulan_bantuan=<?= $row['id_pengusulan_bantuan']; ?>" class="btn btn-danger" onclick="return confirm('Apakah anda yakin ingin menghapus data')">Hapus</a> -->
+                    <?php
+                    } elseif ($row['status'] == 'Diterima' && $row['kelengkapan_berkas'] == 1) {
+                    ?>
+                      <a href="report-pengusulan-bantuan.php?page=exportSingle&id_pengusulan_bantuan=<?= $row['id_pengusulan_bantuan']; ?>" class="btn btn-info" target="_blank">Print</a>
+                    <?php
+                    }
+                    ?>
+                  </td>
+                </tr>
+              <?php } ?>
+            </tbody>
+          </table>
+        </div>
       </div>
     </div>
   </div>

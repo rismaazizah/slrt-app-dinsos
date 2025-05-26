@@ -116,6 +116,30 @@ try {
 
     <hr>
 
+    <img src="../assets/img/tte.png" height="100" alt="TTE" style="display: block; margin: auto;">
+
+    <table class="table ">
+      <colgroup>
+        <col style="width: 10%">
+        <col style="width: 80%">
+        <col style="width: 10%">
+      </colgroup>
+      <tr>
+        <td>
+          <img src="../assets/img/dian-marliana.png" height="60" alt="Dian Marliana" class="gambar">
+        </td>
+        <td style="text-align: center ; padding: 20px 48px;">
+          <span style="font-size: 20px;font-weight: bold; text-align: center ;">KEPALA DINAS SOSIAL P3AP2KB KABUPATEN BANJAR</span>
+          <br>
+          <span style="font-size: 14px;font-weight: bold; text-align: center ;">DIAN MARLIANA</span>
+        </td>
+        <td>
+        </td>
+      </tr>
+    </table>
+
+    <hr>
+
     <?php
     // get current month and year
     $month = date('m');

@@ -221,6 +221,12 @@ try {
       <tr style="text-align: center;">
         <td></td>
         <td>
+          <img src="../assets/img/tte.png" height="60" alt="" class="gambar">
+        </td>
+      </tr>
+      <tr style="text-align: center;">
+        <td></td>
+        <td>
           <br><br><br><br>
         </td>
       </tr>

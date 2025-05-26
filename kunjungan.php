@@ -212,7 +212,7 @@
                     <div class="row mb-2">
                       <div class="col-12">
                         <label>Keperluan</label>
-                        <textarea name="keperluan" rows="4" class="form-control"></textarea>
+                        <textarea name="keperluan" rows="4" class="form-control" required="Harap isi keperluan anda"></textarea>
                       </div>
                     </div>
                     <div class="row mb-2">

@@ -189,6 +189,12 @@ try {
       <tr style="text-align: center;">
         <td></td>
         <td>
+          <img src="../assets/img/tte.png" height="60" alt="" class="gambar">
+        </td>
+      </tr>
+      <tr style="text-align: center;">
+        <td></td>
+        <td>
           Dian Marliana, S.STP., M.Si <br>
           Pembina Tingkat I <br>
           NIP. 19780312 199612 2 001

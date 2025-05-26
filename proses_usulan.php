@@ -64,7 +64,8 @@ if (isset($_POST['tambah'])) {
     $_SESSION['result'] = 'error';
     $_SESSION['message'] = "File yang diizinkan hanya berformat PDF.";
     // Refresh halaman
-    header("Location: form-usulan.php?usulan_id=$usulan_id");
+    
+    echo "<script>document.location='form-usulan.php?usulan_id=$usulan_id'</script>";
     die;
     $uploadOk = 0;
   }
@@ -76,7 +77,7 @@ if (isset($_POST['tambah'])) {
     $_SESSION['result'] = 'error';
     $_SESSION['message'] = "File Sudah Ada.";
     // Refresh halaman
-    header("Location: form-usulan.php?usulan_id=$usulan_id");
+    echo "<script>document.location='form-usulan.php?usulan_id=$usulan_id'</script>";
     die;
     $uploadOk = 0;
   }
@@ -88,7 +89,7 @@ if (isset($_POST['tambah'])) {
     $_SESSION['result'] = 'error';
     $_SESSION['message'] = "Ukuran file terlalu besar. Maksimum 5MB.";
     // Refresh halaman
-    header("Location: form-usulan.php?usulan_id=$usulan_id");
+    echo "<script>document.location='form-usulan.php?usulan_id=$usulan_id'</script>";
     die;
     $uploadOk = 0;
   }
@@ -99,7 +100,7 @@ if (isset($_POST['tambah'])) {
     $_SESSION['result'] = 'error';
     $_SESSION['message'] = "File tidak dapat diunggah.";
     // Refresh halaman
-    header("Location: form-usulan.php?usulan_id=$usulan_id");
+    echo "<script>document.location='form-usulan.php?usulan_id=$usulan_id'</script>";
     die;
   } else {
     // Jika file lolos semua pemeriksaan, lakukan proses upload
@@ -135,6 +136,7 @@ if (isset($_POST['tambah'])) {
 
       if ($result) {
         // Jika berhasil, buat pesan sukses dengan menggunakan session
+        session_start();
         $_SESSION['result'] = 'success';
         $_SESSION['nomormu'] = $nomor_pengusulan;
         $_SESSION['id_pengusulan_bantuan'] = $lastInsertedId;
@@ -142,10 +144,11 @@ if (isset($_POST['tambah'])) {
         echo '<script>window.location.href = "sukses-daftar.php";</script>';
       } else {
         // Jika gagal, buat pesan error dengan menggunakan session
+        session_start();
         $_SESSION['result'] = 'error';
         $_SESSION['message'] = mysqli_error($koneksi);
         // Refresh halaman
-        header("Location: form-usulan.php?usulan_id=$usulan_id");
+        echo "<script>document.location='form-usulan.php?usulan_id=$usulan_id'</script>";
       }
     } else {
       echo "Terjadi kesalahan saat mengunggah file.";
